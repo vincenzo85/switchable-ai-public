@@ -32,7 +32,129 @@ Lo stack completo (gateway, osservabilità, workflow) si avvia così:
 ./run.sh deck                      # la presentazione 3D (tasti: → ← F P D B ?)
 ```
 
-Tutti i comandi: `./run.sh help`. La guida passo passo è in [docs/GUIDA-PER-NEGATI.md](docs/GUIDA-PER-NEGATI.md).
+Tutti i comandi: `./run.sh help`.
+
+## Documentazione
+
+| Wiki | Per chi | Da dove partire |
+|---|---|---|
+| **Per negati** | parti da zero e vuoi far funzionare le cose | [wiki/per-negati](wiki/per-negati/00-inizia-qui.md) |
+| **Tecnica** | sviluppi, integri o gestisci il sistema | [wiki/tecnica](wiki/tecnica/00-panoramica.md) |
+| **Didattica** | vuoi capire i concetti, con esempi ed esercizi risolti | [wiki/didattica](wiki/didattica/00-percorso.md) |
+
+Indice completo: [wiki/00_index.md](wiki/00_index.md).
+
+## Comandi principali
+
+| Comando | Cosa fa | Serve Ollama? |
+|---|---|:---:|
+| `./run.sh route "<prompt>"` | dice dove andrebbe la richiesta e perché (solo regole sul testo) | no |
+| `./run.sh demo-dry` | le decisioni dei 4 task della demo, con le impostazioni del `.env` | no |
+| `./run.sh demo` | la demo completa: decisione, esecuzione, fallback, costo | sì |
+| `./run.sh ask "<prompt>" [--max-tokens N]` | esegue una richiesta end-to-end (JSON con risposta, rotta, costo) | sì |
+| `./run.sh rag-build` | costruisce l'indice dei documenti (`docs/`, `wiki/`, `infra/`, `data/kb/`, git log) | sì |
+| `./run.sh rag "<domanda>"` | mostra i 3 pezzi di documento più pertinenti | sì |
+| `./run.sh ingest <file.md>` | aggiunge un documento: classifica, estrae metadati, checklist QA, reindicizza | sì |
+| `./run.sh report [--json]` | costi reali vs tutto-cloud, latenze p50/p95, fallback, violazioni di residency | no |
+| `./run.sh stress [N]` | stress test su N richieste miste (default 100) | sì |
+| `./run.sh flywheel` | esporta le richieste anonimizzate in un dataset di fine-tuning | no |
+| `./run.sh serve` | API OpenAI-compatible su `:8088` (+ webhook n8n, `/metrics`) | per rispondere |
+| `./run.sh mcp` | server MCP stdio con 6 tool | per rispondere |
+| `./run.sh up [core\|obs\|n8n]` / `down` | stack Docker: LiteLLM, Langfuse, Prometheus, Grafana, n8n | — |
+| `./run.sh bench <nome>` / `numbers` | rifà un benchmark / rigenera `talk/numbers.json` | sì |
+| `./run.sh test` · `make check` · `./run.sh mutation` | test · test + confini esagonali · mutation testing | no |
+| `./run.sh deck` · `deck-redteam` | la presentazione 3D · la versione red team | no |
+
+## Casi d'uso
+
+| Se sei… | e ti serve… | la torre fa… | parti da |
+|---|---|---|---|
+| un team che classifica ticket, email, reclami | farlo in volume senza pagare il cloud | rotta `local`, escalation al cloud solo se la risposta non è valida | `./run.sh ask`, API `/v1/chat/completions` |
+| un ufficio che estrae dati da fatture e ordini | estrazione ripetitiva, a costo quasi zero | rotta `local` anche per documenti lunghi (soglia ×5) | `./run.sh ask "Estrai …"` |
+| un team di sviluppo con runbook e ADR | risposte sulla documentazione interna, con le fonti | rotta `local_rag`, i documenti non escono | `rag-build` + `ask "Nella documentazione…"` |
+| un architetto o un analista | ragionamento lungo e complesso | rotta `cloud` con fallback locale | `.env` con `OPENAI_API_KEY` |
+| un DPO o un'azienda regolamentata | garanzia che i dati personali non escano | regola `data_residency`: cloud vietato, anche per l'osservabilità | `./run.sh route` per verificare |
+| FinOps / chi gestisce il budget | un tetto alla spesa cloud e il costo vero | `budget_guard`, registro costi, TCO ammortizzato | `SAI_BUDGET_EUR`, `./run.sh report` |
+| MLOps | metriche, trace, dashboard | Prometheus, Grafana, Langfuse | `./run.sh up` + `./run.sh serve` |
+| chi ha già un'app OpenAI | adottare il router senza riscrivere codice | API OpenAI-compatible: cambia solo il `base_url` | `./run.sh serve` |
+| chi usa agenti AI | dare al proprio agente routing, RAG e costi | server MCP con 6 tool | `.mcp.json`, `./run.sh mcp` |
+| chi automatizza flussi documentali | intake automatico dei documenti SDLC | workflow n8n → webhook → classifica, estrai, indicizza, QA | `infra/n8n/workflows/` |
+
+## Hands-on: per fare questo, fai così
+
+**Vedere dove andrebbe una richiesta (senza modelli)**
+```bash
+./run.sh route "Classifica questo ticket: non riesco a fare login"     # → local
+./run.sh route "Analizza la pratica del cliente mario.rossi@example.com"   # → local, regola data_residency
+```
+
+**Far rispondere il modello locale**
+```bash
+ollama pull qwen2.5:7b && ollama pull nomic-embed-text
+./run.sh ask "Classifica questo ticket in [accesso, fatturazione, bug, altro]: la fattura di marzo è doppia"
+```
+
+**Fare domande alla documentazione del progetto**
+```bash
+./run.sh rag-build
+./run.sh ask "Nella documentazione, cosa faccio se il budget cloud è esaurito?"   # risposta con fonti [1], [2]
+```
+
+**Aggiungere i tuoi documenti alla knowledge base**
+```bash
+./run.sh ingest percorso/mio-runbook.md      # finisce in data/kb/ e l'indice viene ricostruito
+```
+
+**Vietare il cloud a tutti**
+```bash
+echo "SAI_LOCAL_ONLY=true" >> .env
+./run.sh demo-dry                            # il Task B ora resta in locale: regola local_only
+```
+
+**Mettere un tetto di spesa giornaliero al cloud**
+```bash
+printf 'SAI_BUDGET_EUR=2.00\nSAI_BUDGET_GUARD_EUR=0.20\n' >> .env
+```
+
+**Usare un cloud vero**
+```bash
+printf 'OPENAI_API_KEY=sk-...\nSAI_CLOUD_MODEL=cloud/gpt-4o\n' >> .env     # o un endpoint compatibile con OPENAI_BASE_URL
+```
+
+**Collegare un'app che usa già l'SDK OpenAI**
+```bash
+./run.sh serve
+```
+```python
+from openai import OpenAI
+client = OpenAI(base_url="http://localhost:8088/v1", api_key="non-serve")
+r = client.chat.completions.create(model="qualsiasi", messages=[{"role": "user", "content": "Classifica: login rotto"}])
+print(r.choices[0].message.content, r.model)    # r.model = il modello che ha risposto davvero
+```
+
+**Vedere costi e latenze**
+```bash
+./run.sh report
+```
+
+**Vedere le dashboard**
+```bash
+./run.sh up && ./run.sh serve
+curl -s -X POST localhost:8088/v1/stress -H 'Content-Type: application/json' -d '{"n": 10}'
+# Grafana http://localhost:3012 · Langfuse http://localhost:3011 (demo@switchable.local / switchable-demo)
+```
+
+**Esportare un dataset per il fine-tuning**
+```bash
+./run.sh flywheel                            # data/flywheel/sft.jsonl, dati personali oscurati
+```
+
+**Controllare di non aver rotto niente**
+```bash
+make check && ./run.sh mutation
+```
+
+Altre ricette, con l'output atteso: [wiki/per-negati/03-ricette.md](wiki/per-negati/03-ricette.md).
 
 ## Dall'abstract al codice
 

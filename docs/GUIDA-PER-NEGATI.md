@@ -1,5 +1,7 @@
 # Guida per negati
 
+> Versione estesa, con ricette e soluzione dei problemi: [wiki per negati](../wiki/per-negati/00-inizia-qui.md).
+
 Questa guida spiega come usare `switchable_ai` senza conoscere niente in anticipo. Ogni comando si scrive nel terminale, dentro la cartella del progetto:
 
 ```bash
