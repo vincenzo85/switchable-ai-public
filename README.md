@@ -89,3 +89,7 @@ Le credenziali in `infra/docker-compose.yml` sono di demo e i servizi ascoltano 
 ```
 
 Le scelte principali sono spiegate negli ADR in `docs/adr/`; il percorso di lavoro è in `docs/RCCV_LOG.md`.
+
+## Licenza
+
+Il codice è distribuito con licenza [MIT](LICENSE). I file di terze parti in `talk/deck/vendor/` mantengono la loro licenza: font sotto SIL Open Font License 1.1 (`vendor/fonts/OFL-*.txt`), icone Lucide sotto ISC (`vendor/icons/LICENSE`).
