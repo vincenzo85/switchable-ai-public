@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista relatore</title>
+<style>
+:root{--bg:#0b0d12;--ink:#ECE9E1;--muted:#8C9097;--rule:#2A2D33;--ok:#199e70;--late:#d03b3b;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif;display:grid;grid-template-columns:1fr 340px;height:100vh}
+main{padding:28px 34px;overflow:auto}
+aside{border-left:1px solid var(--rule);padding:28px 24px;display:grid;align-content:start;gap:18px}
+h1{font:500 30px/1.15 Georgia,serif;margin:0 0 6px}
+.k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.notes{font-size:21px;line-height:1.55;white-space:pre-wrap;margin-top:18px}
+.clock{font:500 46px/1 Georgia,serif;font-variant-numeric:tabular-nums}
+.late{color:var(--late)} .ok{color:var(--ok)}
+button{font:inherit;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ink)}
+.next{color:var(--muted)}
+ol{margin:0;padding-left:20px;max-height:40vh;overflow:auto;font-size:14px;color:var(--muted)}
+ol li.cur{color:var(--ink);font-weight:600}
+mark{background:#f0b429;color:#15181C;padding:0 4px;border-radius:3px}
+</style>
+</head>
+<body>
+<main>
+  <div class="k" id="pos"></div>
+  <h1 id="title">—</h1>
+  <div class="notes" id="notes"></div>
+</main>
+<aside>
+  <div><div class="k">Tempo trascorso</div><div class="clock" id="elapsed">00:00</div></div>
+  <div><div class="k">Piano a fine step</div><div class="clock" id="plan" style="font-size:28px">00:00</div><div id="delta" class="k"></div></div>
+  <div><div class="k">Prossimo</div><div class="next" id="next">—</div></div>
+  <div style="display:flex;gap:8px"><button id="prev">← Indietro</button><button id="fwd">Avanti →</button><button id="reset">Azzera timer</button></div>
+  <ol id="list"></ol>
+</aside>
+<script>/*DATA*/</script>
+<script>/*SLIDES*/</script>
+<script>
+'use strict';
+const chan = new BroadcastChannel('sai-deck');
+let cur = 0, t0 = null;
+const BEATS = window.BEATS || {};
+// minuti: override dello step, altrimenti la durata del beat nel canovaccio
+const MINS = stepMinutes(BEATS);
+const cum = MINS.reduce((a, m) => (a.push((a.at(-1) || 0) + m), a), []);
+const mmss = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const list = document.getElementById('list');
+list.innerHTML = STEPS.map((s, i) => `<li data-i="${i}">${s.title}</li>`).join('');
+function show(i) {
+  cur = i; if (t0 === null && i > 0) t0 = Date.now();
+  const s = STEPS[i];
+  document.getElementById('pos').textContent = `${s.phase} · beat ${s.beat} · step ${i + 1}/${STEPS.length}`;
+  document.getElementById('title').textContent = s.title;
+  const b = BEATS[s.beat] || {};
+  const notes = s.notes || (b.notes ? `${b.notes}\n\n→ ${b.transition}` : '(nessuna nota: vedi talk/CANOVACCIO.md)');
+  const el = document.getElementById('notes');
+  el.innerHTML = notes.replace(/[&<]/g, c => ({ '&': '&amp;', '<': '&lt;' }[c])).replace(/«\[(TODO[^\]]*)\]»/g, '<mark>[$1]</mark>');
+  document.getElementById('next').textContent = STEPS[i + 1] ? STEPS[i + 1].title : 'fine';
+  document.getElementById('plan').textContent = mmss(cum[i] * 60);
+  [...list.children].forEach((li, k) => li.classList.toggle('cur', k === i));
+}
+chan.onmessage = m => { if (m.data.type === 'state') show(m.data.i); };
+const go = i => chan.postMessage({ type: 'goto', i: Math.max(0, Math.min(STEPS.length - 1, i)) });
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('fwd').onclick = () => go(cur + 1);
+document.getElementById('reset').onclick = () => { t0 = Date.now(); };
+list.onclick = e => { const li = e.target.closest('li'); if (li) go(+li.dataset.i); };
+addEventListener('keydown', e => { if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(cur + 1); } if (['ArrowLeft', 'PageUp'].includes(e.key)) go(cur - 1); });
+setInterval(() => {
+  const el = t0 ? (Date.now() - t0) / 1000 : 0;
+  document.getElementById('elapsed').textContent = mmss(el);
+  const d = el - cum[cur] * 60, dl = document.getElementById('delta');
+  dl.textContent = t0 ? (d > 0 ? `in ritardo di ${mmss(d)}` : `in anticipo di ${mmss(-d)}`) : '';
+  dl.className = 'k ' + (d > 30 ? 'late' : 'ok');
+}, 500);
+show(0);
+chan.postMessage({ type: 'hello' });
+</script>
+</body>
+</html>

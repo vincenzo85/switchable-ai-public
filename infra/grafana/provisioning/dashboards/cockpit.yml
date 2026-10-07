@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: switchable
+    folder: Switchable AI
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "benchmark": "vllm_vs_ollama",
+    "measured_at": "2026-10-03T21:55:35+02:00",
+    "git_commit": "956fc49",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "prompt": "Elenca 8 controlli di sicurezza per un gateway LLM aziendale, una riga ciascuno.",
+  "max_tokens": 200,
+  "levels": [
+    1,
+    4,
+    16
+  ],
+  "results": {
+    "ollama": {
+      "engine": "ollama",
+      "model": "qwen2.5:1.5b",
+      "single": {
+        "ttft_p50_ms": 10.990441000103601,
+        "total_p50_ms": 1125.1190200000565
+      },
+      "concurrency": [
+        {
+          "concurrency": 1,
+          "wall_s": 1.1437208560000727,
+          "tokens_out": 200,
+          "throughput_tok_s": 174.86784380190343,
+          "ttft_p50_ms": 11.268870999629144,
+          "ttft_p95_ms": 11.268870999629144
+        },
+        {
+          "concurrency": 4,
+          "wall_s": 4.568481112000882,
+          "tokens_out": 800,
+          "throughput_tok_s": 175.11290522762386,
+          "ttft_p50_ms": 1734.3634939998083,
+          "ttft_p95_ms": 3270.1342794002358
+        },
+        {
+          "concurrency": 16,
+          "wall_s": 19.16137737400004,
+          "tokens_out": 3200,
+          "throughput_tok_s": 167.0026082958974,
+          "ttft_p50_ms": 8690.708881500086,
+          "ttft_p95_ms": 16972.76849800005
+        }
+      ]
+    },
+    "vllm": {
+      "engine": "vllm",
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "single": {
+        "ttft_p50_ms": 18.696217000069737,
+        "total_p50_ms": 2673.014344999501
+      },
+      "concurrency": [
+        {
+          "concurrency": 1,
+          "wall_s": 2.6762288469999476,
+          "tokens_out": 200,
+          "throughput_tok_s": 74.73202458907802,
+          "ttft_p50_ms": 20.010064999951283,
+          "ttft_p95_ms": 20.010064999951283
+        },
+        {
+          "concurrency": 4,
+          "wall_s": 2.6927903389996573,
+          "tokens_out": 800,
+          "throughput_tok_s": 297.08959825561146,
+          "ttft_p50_ms": 34.87639700006184,
+          "ttft_p95_ms": 35.064064599782796
+        },
+        {
+          "concurrency": 16,
+          "wall_s": 2.8785791190002783,
+          "tokens_out": 3200,
+          "throughput_tok_s": 1111.6595610932347,
+          "ttft_p50_ms": 91.73753299955933,
+          "ttft_p95_ms": 93.88855374959348
+        }
+      ]
+    }
+  },
+  "caveat": "Ollama: GGUF Q4_K_M; vLLM: BF16. Stessa architettura e pesi di partenza, quantizzazione diversa.",
+  "notes": []
+}

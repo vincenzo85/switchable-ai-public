@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "benchmark": "n8n_ingest",
+    "measured_at": "2026-10-03T22:16:10+02:00",
+    "git_commit": "011e72a",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "webhook": "http://127.0.0.1:5678/webhook/sdlc-document",
+  "workflow": "infra/n8n/workflows/sdlc-document-intake.json",
+  "rows": [
+    {
+      "status": "landed",
+      "category": "release-note",
+      "document": "data/kb/adr-007-gateway.md",
+      "routes": [
+        "local",
+        "local",
+        "cloud"
+      ],
+      "models": [
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b"
+      ],
+      "cost_eur": 0.0001672,
+      "cost_if_cloud_eur": 0.0038456,
+      "checklist": [
+        "Ecco una checklist QA di massimo 5 punti per verificare il documento ADR-007 — Rollback del gateway LiteLLM:",
+        "1. **Verifica del Processo di Deploy Canary**:",
+        "- Assicurarsi che ogni aggiornamento del gateway passi per un deploy canary.",
+        "- Verificare se gli smoke test sugli alias fast-local e smart-cloud falliscono.",
+        "2. **Implementazione del Rollback**:",
+        "- Verificare se, in caso di fallimento degli smoke test, il processo di rollback torna all'immagine precedente con `docker compose up -d litellm` sul tag fissato in `infra/docker-compose.yml`.",
+        "3. **Dashboard Cockpit**:",
+        "- Verificare che il dashboard Cockpit mostri correttamente lo stato del gateway e dei test.",
+        "- Assicurarsi che le notifiche di errore siano visibili e corrette"
+      ],
+      "data_residency_violations": 0,
+      "wall_ms": 6985,
+      "name": "adr-007-gateway.md"
+    },
+    {
+      "status": "landed",
+      "category": "incident",
+      "document": "data/kb/incident-2026-09-30.md",
+      "routes": [
+        "local",
+        "local",
+        "local"
+      ],
+      "models": [
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b"
+      ],
+      "cost_eur": 0.00013800000000000002,
+      "cost_if_cloud_eur": 0.003174,
+      "checklist": [
+        "Ecco una checklist QA di massimo 5 punti per verificare il documento:",
+        "1. **Verifica del Titolo e Data**: Assicurarsi che il titolo \"Incident 2026-09-30\" sia corretto e che la data sia precisa.",
+        "2. **Verifica dei Dettagli dell'Incidente**: Verificare se sono presenti e corretti i dettagli dell'incidente, come l'ora di avvio (10:42), la durata (18 minuti) e il codice di errore (529).",
+        "3. **Verifica del Numero di Fallback**: Assicurarsi che il numero di fallback sul modello locale (212) sia corretto e che non ci siano richieste perse.",
+        "4. **Verifica dell'Azione Presa**: Verificare se l'azione presa (abbass"
+      ],
+      "data_residency_violations": 0,
+      "wall_ms": 7090,
+      "name": "incident-2026-09-30.md"
+    },
+    {
+      "status": "landed",
+      "category": "altro",
+      "document": "data/kb/nota-hr-riservata.md",
+      "routes": [
+        "local",
+        "local",
+        "local"
+      ],
+      "models": [
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b",
+        "ollama/qwen2.5:7b"
+      ],
+      "cost_eur": 0.0001062,
+      "cost_if_cloud_eur": 0.0024426,
+      "checklist": [
+        "Ecco una checklist QA di massimo 5 punti per verificare il documento:",
+        "1. **Confidenzialità e Accesso:**",
+        "- Verifica che il documento sia correttamente etichettato come \"riservato HR\" e che solo i membri autorizzati dell'ufficio personale abbiano accesso.",
+        "- Assicurati che i nomi e le informazioni personali dei dipendenti siano anonimizzati o pseudonimizzati, se necessario.",
+        "2. **Integrità dei Dati:**",
+        "- Verifica che tutti i colloqui di fine anno siano inclusi e che le valutazioni individuali del team vendite siano complete e corrette.",
+        "- Assicurati che le date, i tempi e i dettagli dei colloqui siano accurati.",
+        "3. **Formato e Stile:**",
+        "- Verifica che il documento"
+      ],
+      "data_residency_violations": 0,
+      "wall_ms": 6700,
+      "name": "nota-hr-riservata.md"
+    }
+  ],
+  "residency_violations": 0
+}

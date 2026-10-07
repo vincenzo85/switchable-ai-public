@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "benchmark": "tco",
+    "measured_at": "2026-10-03T21:48:42+02:00",
+    "git_commit": "5920918",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "runs_per_task": 3,
+  "cloud_key_present": false,
+  "pricing_eur_per_1k": {
+    "local": 0.0002,
+    "ollama/qwen2.5:7b": 0.0002,
+    "vllm/qwen2.5-1.5b": 0.0001,
+    "cloud/gpt-4o": 0.0046,
+    "cloud/gpt-4o-mini": 0.0004,
+    "cloud/deepseek": 0.002
+  },
+  "totals": {
+    "cost_eur": 0.0011124,
+    "cost_if_cloud_eur": 0.0255852,
+    "saving_pct": 95.65217391304348,
+    "fallbacks": 3,
+    "residency_violations": 0,
+    "latency_p50_ms": 5882.0,
+    "latency_p95_ms": 6539.099999999999
+  },
+  "by_task": {
+    "Task A — classificazione semplice": {
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "latency_p50_ms": 65.0,
+      "tokens_in": 69,
+      "tokens_out_p50": 3.0,
+      "cost_eur": 4.32e-05,
+      "cost_if_cloud_eur": 0.0009935999999999999
+    },
+    "Task B — reasoning complesso": {
+      "route": "cloud",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": true,
+      "latency_p50_ms": 5907.0,
+      "tokens_in": 214,
+      "tokens_out_p50": 300.0,
+      "cost_eur": 0.0003084,
+      "cost_if_cloud_eur": 0.0070932
+    },
+    "Task C — domanda sulla knowledge base": {
+      "route": "local_rag",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "latency_p50_ms": 5535.0,
+      "tokens_in": 579,
+      "tokens_out_p50": 276.0,
+      "cost_eur": 0.000495,
+      "cost_if_cloud_eur": 0.011385
+    },
+    "Task D — dato sensibile": {
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "latency_p50_ms": 6297.0,
+      "tokens_in": 143,
+      "tokens_out_p50": 300.0,
+      "cost_eur": 0.0002658,
+      "cost_if_cloud_eur": 0.006113400000000001
+    }
+  },
+  "rows": [
+    {
+      "task": "Task A — classificazione semplice",
+      "run": 1,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 69,
+      "tokens_out": 3,
+      "latency_ms": 131,
+      "cost_eur": 1.44e-05,
+      "cost_if_cloud_eur": 0.0003312,
+      "sources": []
+    },
+    {
+      "task": "Task A — classificazione semplice",
+      "run": 2,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 69,
+      "tokens_out": 3,
+      "latency_ms": 63,
+      "cost_eur": 1.44e-05,
+      "cost_if_cloud_eur": 0.0003312,
+      "sources": []
+    },
+    {
+      "task": "Task A — classificazione semplice",
+      "run": 3,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 69,
+      "tokens_out": 3,
+      "latency_ms": 65,
+      "cost_eur": 1.44e-05,
+      "cost_if_cloud_eur": 0.0003312,
+      "sources": []
+    },
+    {
+      "task": "Task B — reasoning complesso",
+      "run": 1,
+      "route": "cloud",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": true,
+      "fallback_reason": "cloud/gpt-4o: nessuna chiave cloud (OPENAI_API_KEY vuota)",
+      "tokens_in": 214,
+      "tokens_out": 300,
+      "latency_ms": 5857,
+      "cost_eur": 0.0001028,
+      "cost_if_cloud_eur": 0.0023644,
+      "sources": []
+    },
+    {
+      "task": "Task B — reasoning complesso",
+      "run": 2,
+      "route": "cloud",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": true,
+      "fallback_reason": "cloud/gpt-4o: nessuna chiave cloud (OPENAI_API_KEY vuota)",
+      "tokens_in": 214,
+      "tokens_out": 300,
+      "latency_ms": 5907,
+      "cost_eur": 0.0001028,
+      "cost_if_cloud_eur": 0.0023644,
+      "sources": []
+    },
+    {
+      "task": "Task B — reasoning complesso",
+      "run": 3,
+      "route": "cloud",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": true,
+      "fallback_reason": "cloud/gpt-4o: nessuna chiave cloud (OPENAI_API_KEY vuota)",
+      "tokens_in": 214,
+      "tokens_out": 300,
+      "latency_ms": 5907,
+      "cost_eur": 0.0001028,
+      "cost_if_cloud_eur": 0.0023644,
+      "sources": []
+    },
+    {
+      "task": "Task C — domanda sulla knowledge base",
+      "run": 1,
+      "route": "local_rag",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 579,
+      "tokens_out": 300,
+      "latency_ms": 6203,
+      "cost_eur": 0.00017580000000000002,
+      "cost_if_cloud_eur": 0.0040434,
+      "sources": [
+        "docs/RUNBOOK.md",
+        "docs/adr/ADR-002-local-first-con-fallback.md",
+        "data/kb/adr-007-gateway.md"
+      ]
+    },
+    {
+      "task": "Task C — domanda sulla knowledge base",
+      "run": 2,
+      "route": "local_rag",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 579,
+      "tokens_out": 276,
+      "latency_ms": 5535,
+      "cost_eur": 0.000171,
+      "cost_if_cloud_eur": 0.003933,
+      "sources": [
+        "docs/RUNBOOK.md",
+        "docs/adr/ADR-002-local-first-con-fallback.md",
+        "data/kb/adr-007-gateway.md"
+      ]
+    },
+    {
+      "task": "Task C — domanda sulla knowledge base",
+      "run": 3,
+      "route": "local_rag",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 579,
+      "tokens_out": 162,
+      "latency_ms": 3252,
+      "cost_eur": 0.0001482,
+      "cost_if_cloud_eur": 0.0034086,
+      "sources": [
+        "docs/RUNBOOK.md",
+        "docs/adr/ADR-002-local-first-con-fallback.md",
+        "data/kb/adr-007-gateway.md"
+      ]
+    },
+    {
+      "task": "Task D — dato sensibile",
+      "run": 1,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 143,
+      "tokens_out": 300,
+      "latency_ms": 6075,
+      "cost_eur": 8.86e-05,
+      "cost_if_cloud_eur": 0.0020378,
+      "sources": []
+    },
+    {
+      "task": "Task D — dato sensibile",
+      "run": 2,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 143,
+      "tokens_out": 300,
+      "latency_ms": 6297,
+      "cost_eur": 8.86e-05,
+      "cost_if_cloud_eur": 0.0020378,
+      "sources": []
+    },
+    {
+      "task": "Task D — dato sensibile",
+      "run": 3,
+      "route": "local",
+      "model": "ollama/qwen2.5:7b",
+      "fallback": false,
+      "fallback_reason": "",
+      "tokens_in": 143,
+      "tokens_out": 300,
+      "latency_ms": 6835,
+      "cost_eur": 8.86e-05,
+      "cost_if_cloud_eur": 0.0020378,
+      "sources": []
+    }
+  ],
+  "local_throughput": {
+    "model": "qwen2.5:7b",
+    "tokens_per_sec_p50": 42.31700151439368,
+    "runs": [
+      42.0390597998734,
+      42.31700151439368,
+      43.012510188588344
+    ]
+  },
+  "local_amortized_eur_per_mtok": {
+    "assumption": {
+      "hw_eur": 2000,
+      "amort_months": 36,
+      "watts": 140,
+      "eur_kwh": 0.3
+    },
+    "note": "IPOTESI dichiarata: quota hardware/potenza/energia non misurate; throughput misurato",
+    "utilization_5pct": {
+      "energy": 0.275696912568306,
+      "hardware": 10.129957104949513,
+      "total": 10.405654017517818
+    },
+    "utilization_25pct": {
+      "energy": 0.275696912568306,
+      "hardware": 2.025991420989903,
+      "total": 2.301688333558209
+    },
+    "utilization_80pct": {
+      "energy": 0.275696912568306,
+      "hardware": 0.6331223190593446,
+      "total": 0.9088192316276505
+    }
+  }
+}

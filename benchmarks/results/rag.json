@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "benchmark": "rag",
+    "measured_at": "2026-10-03T22:18:20+02:00",
+    "git_commit": "011e72a",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "questions": 6,
+  "hit_at_3": 1.0,
+  "cites_rate": 0.8333333333333334,
+  "expected_in_answer_rate": 0.8333333333333334,
+  "routed_to_rag": 5,
+  "latency_p50_ms": 3139.0,
+  "rows": [
+    {
+      "question": "Cosa succede quando il budget del cloud si esaurisce?",
+      "route": "local",
+      "expected_source": "docs/RUNBOOK.md|docs/ARCHITETTURA.md",
+      "retrieved": [
+        "docs/RUNBOOK.md",
+        "docs/RUNBOOK.md",
+        "docs/RUNBOOK.md"
+      ],
+      "hit_at_3": true,
+      "cites": false,
+      "expected_in_answer": false,
+      "latency_ms": 3874,
+      "answer": "Quando il budget del cloud si esaurisce, si verificano diversi eventi e conseguenze:\n\n1. Interrompimento dei servizi: Gli account di cloud computing come AWS, Azure, Google Cloud, ecc. interromperanno automaticamente i servizi quando il budget mensile è esaurito. Questo può includere la sospensione "
+    },
+    {
+      "question": "Nella documentazione, perché il router di base non usa un LLM per decidere?",
+      "route": "local_rag",
+      "expected_source": "docs/adr/ADR-001-router-deterministico.md",
+      "retrieved": [
+        "docs/adr/ADR-001-router-deterministico.md",
+        "docs/ARCHITETTURA.md",
+        "docs/ARCHITETTURA.md"
+      ],
+      "hit_at_3": true,
+      "cites": true,
+      "expected_in_answer": true,
+      "latency_ms": 4001,
+      "answer": "Nella documentazione, il router di base non usa un LLM per decidere perché sarebbe costoso e poco prevedibile. Secondo l'ADR-001 [1], un router fatto da un LLM aggiunge latenza e costi di token a ogni richiesta, e può essere manipolato con sequenze avversarie che spingono tutto verso il modello cost"
+    },
+    {
+      "question": "Nella documentazione, su quale porta gira Langfuse?",
+      "route": "local_rag",
+      "expected_source": "docs/ARCHITETTURA.md",
+      "retrieved": [
+        "docs/RUNBOOK.md",
+        "docs/ARCHITETTURA.md",
+        "data/kb/adr-007-gateway.md"
+      ],
+      "hit_at_3": true,
+      "cites": true,
+      "expected_in_answer": true,
+      "latency_ms": 995,
+      "answer": "Secondo i documenti forniti, Langfuse gira sulla porta 3011.\n\nFonte: [2] (docs/ARCHITETTURA.md)"
+    },
+    {
+      "question": "Nel runbook, come si ricostruisce l'indice RAG?",
+      "route": "local_rag",
+      "expected_source": "docs/RUNBOOK.md",
+      "retrieved": [
+        "docs/RUNBOOK.md",
+        "docs/RUNBOOK.md",
+        "docs/ARCHITETTURA.md"
+      ],
+      "hit_at_3": true,
+      "cites": true,
+      "expected_in_answer": true,
+      "latency_ms": 2404,
+      "answer": "Nel runbook, si ricostruisce l'indice RAG eseguendo il comando `./run.sh rag-build`. Questo comando include l'indice con i documenti necessari come `README.md`, `MISSION.md`, `docs/`, `wiki/`, `infra/`, i documenti inghiottiti da n8n in `data/kb/` e la storia git.\n\nFonte: [1] (docs/RUNBOOK.md)"
+    },
+    {
+      "question": "Nella documentazione, in che modalità parte l'advisor di rotta?",
+      "route": "local_rag",
+      "expected_source": "docs/adr/ADR-003-advisor-in-shadow.md",
+      "retrieved": [
+        "docs/adr/ADR-003-advisor-in-shadow.md",
+        "docs/adr/ADR-003-advisor-in-shadow.md",
+        "docs/ARCHITETTURA.md"
+      ],
+      "hit_at_3": true,
+      "cites": true,
+      "expected_in_answer": true,
+      "latency_ms": 1933,
+      "answer": "Nella documentazione, l'advisor di rotta parte in modalità `shadow` [1]. In questa modalità, l'advisor decide la regola, viene interrogato e misurato (accordo, confidenza, latenza) senza applicare immediatamente le sue decisioni [1][2]."
+    },
+    {
+      "question": "Nella documentazione, cosa fa il sistema se il cloud supera il budget di latenza?",
+      "route": "local_rag",
+      "expected_source": "docs/ARCHITETTURA.md|docs/RUNBOOK.md",
+      "retrieved": [
+        "docs/RUNBOOK.md",
+        "docs/adr/ADR-002-local-first-con-fallback.md",
+        "docs/RUNBOOK.md"
+      ],
+      "hit_at_3": true,
+      "cites": true,
+      "expected_in_answer": true,
+      "latency_ms": 5060,
+      "answer": "Nella documentazione non è specificato esplicitamente il comportamento del sistema se il cloud supera il budget di latenza. Tuttavia, dal contesto [1] sappiamo che se il budget cloud è esaurito, il sistema mantiene il comportamento voluto e le richieste complesse rimangono in locale. Non è menzionat"
+    }
+  ]
+}

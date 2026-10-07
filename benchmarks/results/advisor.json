@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "benchmark": "advisor",
+    "measured_at": "2026-10-03T22:05:19+02:00",
+    "git_commit": "3b1d7fb",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "tasks": 100,
+  "heldout_tasks": 32,
+  "gold": {
+    "ticket": "local",
+    "extraction": "local",
+    "architecture": "cloud",
+    "kb_question": "local_rag",
+    "sensitive": "local"
+  },
+  "results": {
+    "deterministic": {
+      "scenario": {
+        "accuracy": 1.0,
+        "per_family": {
+          "ticket": {
+            "n": 40,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 40
+            }
+          },
+          "extraction": {
+            "n": 15,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 15
+            }
+          },
+          "architecture": {
+            "n": 20,
+            "accuracy": 1.0,
+            "chosen": {
+              "cloud": 20
+            }
+          },
+          "kb_question": {
+            "n": 15,
+            "accuracy": 1.0,
+            "chosen": {
+              "local_rag": 15
+            }
+          },
+          "sensitive": {
+            "n": 10,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 10
+            }
+          }
+        },
+        "latency_p50_ms": 0,
+        "latency_p95_ms": 0,
+        "mean_confidence": 1.0,
+        "errors": 0,
+        "error_samples": []
+      },
+      "heldout": {
+        "accuracy": 0.53125,
+        "per_family": {
+          "local": {
+            "n": 16,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 16
+            }
+          },
+          "cloud": {
+            "n": 8,
+            "accuracy": 0.0,
+            "chosen": {
+              "local": 7,
+              "local_rag": 1
+            }
+          },
+          "local_rag": {
+            "n": 8,
+            "accuracy": 0.125,
+            "chosen": {
+              "local": 7,
+              "local_rag": 1
+            }
+          }
+        },
+        "latency_p50_ms": 0,
+        "latency_p95_ms": 0,
+        "mean_confidence": 1.0,
+        "errors": 0,
+        "error_samples": []
+      }
+    },
+    "rizzo": {
+      "scenario": {
+        "accuracy": 0.99,
+        "per_family": {
+          "ticket": {
+            "n": 40,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 40
+            }
+          },
+          "extraction": {
+            "n": 15,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 15
+            }
+          },
+          "architecture": {
+            "n": 20,
+            "accuracy": 1.0,
+            "chosen": {
+              "cloud": 20
+            }
+          },
+          "kb_question": {
+            "n": 15,
+            "accuracy": 1.0,
+            "chosen": {
+              "local_rag": 15
+            }
+          },
+          "sensitive": {
+            "n": 10,
+            "accuracy": 0.9,
+            "chosen": {
+              "local": 9,
+              "local_rag": 1
+            }
+          }
+        },
+        "latency_p50_ms": 76.0,
+        "latency_p95_ms": 109.0,
+        "mean_confidence": 0.9793452427758003,
+        "errors": 0,
+        "error_samples": []
+      },
+      "heldout": {
+        "accuracy": 0.65625,
+        "per_family": {
+          "local": {
+            "n": 16,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 16
+            }
+          },
+          "cloud": {
+            "n": 8,
+            "accuracy": 0.375,
+            "chosen": {
+              "cloud": 3,
+              "local": 3,
+              "local_rag": 2
+            }
+          },
+          "local_rag": {
+            "n": 8,
+            "accuracy": 0.25,
+            "chosen": {
+              "local": 6,
+              "local_rag": 2
+            }
+          }
+        },
+        "latency_p50_ms": 76.0,
+        "latency_p95_ms": 78.45,
+        "mean_confidence": 0.9503727712727457,
+        "errors": 0,
+        "error_samples": []
+      }
+    },
+    "openjev": {
+      "scenario": {
+        "accuracy": 0.88,
+        "per_family": {
+          "ticket": {
+            "n": 40,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 40
+            }
+          },
+          "extraction": {
+            "n": 15,
+            "accuracy": 1.0,
+            "chosen": {
+              "local": 15
+            }
+          },
+          "architecture": {
+            "n": 20,
+            "accuracy": 1.0,
+            "chosen": {
+              "cloud": 20
+            }
+          },
+          "kb_question": {
+            "n": 15,
+            "accuracy": 0.4,
+            "chosen": {
+              "cloud": 9,
+              "local_rag": 6
+            }
+          },
+          "sensitive": {
+            "n": 10,
+            "accuracy": 0.7,
+            "chosen": {
+              "local": 7,
+              "local_rag": 3
+            }
+          }
+        },
+        "latency_p50_ms": 199.5,
+        "latency_p95_ms": 244.0,
+        "mean_confidence": 0.7595413349651655,
+        "errors": 0,
+        "error_samples": []
+      },
+      "heldout": {
+        "accuracy": 0.65625,
+        "per_family": {
+          "local": {
+            "n": 16,
+            "accuracy": 0.9375,
+            "chosen": {
+              "local": 15,
+              "local_rag": 1
+            }
+          },
+          "cloud": {
+            "n": 8,
+            "accuracy": 0.25,
+            "chosen": {
+              "cloud": 2,
+              "local": 4,
+              "local_rag": 2
+            }
+          },
+          "local_rag": {
+            "n": 8,
+            "accuracy": 0.5,
+            "chosen": {
+              "local": 4,
+              "local_rag": 4
+            }
+          }
+        },
+        "latency_p50_ms": 203.5,
+        "latency_p95_ms": 216.9,
+        "mean_confidence": 0.6141530617530258,
+        "errors": 0,
+        "error_samples": []
+      }
+    }
+  },
+  "note": "Advisor in modalità active con min_confidence=0: misura la scelta grezza del modello. Zero-shot: nessuna calibrazione sul dominio (rizzo calibrate non usato)."
+}

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "switchable_ai"
+version = "0.1.0"
+description = "Architettura AI switchabile: routing dinamico cloud/locale, RAG locale, TCO osservabile."
+requires-python = ">=3.11"
+dependencies = ["fastapi", "uvicorn", "httpx", "prometheus_client", "hnswlib", "numpy", "pyyaml", "mcp", "requests"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "playwright"]
+
+[tool.setuptools.packages.find]
+include = ["app*", "core*", "adapters*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

@@ -1,0 +1,1055 @@
+{
+  "meta": {
+    "benchmark": "compression",
+    "measured_at": "2026-10-03T21:51:18+02:00",
+    "git_commit": "5920918",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "model": "ollama/qwen2.5:7b",
+  "prompts": 20,
+  "compressor": "extractive (adapters/compression)",
+  "judge": "deterministico: valore atteso contenuto nella risposta",
+  "summary": {
+    "originale": {
+      "accuracy": 1.0,
+      "fact_kept_rate": 1.0,
+      "tokens_in_mean": 1376.8,
+      "token_saving_pct": 0.0,
+      "latency_p50_ms": 478.0
+    },
+    "estrattiva_50": {
+      "accuracy": 1.0,
+      "fact_kept_rate": 1.0,
+      "tokens_in_mean": 678.9,
+      "token_saving_pct": 50.690005810575244,
+      "latency_p50_ms": 493.0
+    },
+    "estrattiva_30": {
+      "accuracy": 1.0,
+      "fact_kept_rate": 1.0,
+      "tokens_in_mean": 440.65,
+      "token_saving_pct": 67.99462521789657,
+      "latency_p50_ms": 485.0
+    },
+    "agnostica_50": {
+      "accuracy": 0.75,
+      "fact_kept_rate": 0.75,
+      "tokens_in_mean": 681.7,
+      "token_saving_pct": 50.48663567693201,
+      "latency_p50_ms": 743.0
+    },
+    "agnostica_30": {
+      "accuracy": 0.7,
+      "fact_kept_rate": 0.7,
+      "tokens_in_mean": 444.95,
+      "token_saving_pct": 67.68230679837303,
+      "latency_p50_ms": 685.5
+    }
+  },
+  "rows": [
+    {
+      "i": 0,
+      "variant": "originale",
+      "tokens_in": 1680,
+      "tokens_out": 8,
+      "latency_ms": 267,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 0,
+      "variant": "estrattiva_50",
+      "tokens_in": 845,
+      "tokens_out": 8,
+      "latency_ms": 247,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 0,
+      "variant": "estrattiva_30",
+      "tokens_in": 567,
+      "tokens_out": 8,
+      "latency_ms": 211,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 0,
+      "variant": "agnostica_50",
+      "tokens_in": 843,
+      "tokens_out": 25,
+      "latency_ms": 862,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il codice di rilascio della versione 4.2 è ORCA-7731."
+    },
+    {
+      "i": 0,
+      "variant": "agnostica_30",
+      "tokens_in": 552,
+      "tokens_out": 8,
+      "latency_ms": 401,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 1,
+      "variant": "originale",
+      "tokens_in": 1333,
+      "tokens_out": 23,
+      "latency_ms": 595,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 1,
+      "variant": "estrattiva_50",
+      "tokens_in": 665,
+      "tokens_out": 23,
+      "latency_ms": 549,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 1,
+      "variant": "estrattiva_30",
+      "tokens_in": 443,
+      "tokens_out": 23,
+      "latency_ms": 508,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 1,
+      "variant": "agnostica_50",
+      "tokens_in": 660,
+      "tokens_out": 23,
+      "latency_ms": 794,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 1,
+      "variant": "agnostica_30",
+      "tokens_in": 442,
+      "tokens_out": 23,
+      "latency_ms": 789,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 2,
+      "variant": "originale",
+      "tokens_in": 1558,
+      "tokens_out": 16,
+      "latency_ms": 453,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il responsabile del servizio pagamenti è Ilaria Ventimiglia."
+    },
+    {
+      "i": 2,
+      "variant": "estrattiva_50",
+      "tokens_in": 756,
+      "tokens_out": 6,
+      "latency_ms": 212,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Ilaria Ventimiglia"
+    },
+    {
+      "i": 2,
+      "variant": "estrattiva_30",
+      "tokens_in": 474,
+      "tokens_out": 7,
+      "latency_ms": 214,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Ilaria Ventimiglia."
+    },
+    {
+      "i": 2,
+      "variant": "agnostica_50",
+      "tokens_in": 767,
+      "tokens_out": 6,
+      "latency_ms": 457,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Ilaria Ventimiglia"
+    },
+    {
+      "i": 2,
+      "variant": "agnostica_30",
+      "tokens_in": 491,
+      "tokens_out": 6,
+      "latency_ms": 363,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Ilaria Ventimiglia"
+    },
+    {
+      "i": 3,
+      "variant": "originale",
+      "tokens_in": 1406,
+      "tokens_out": 20,
+      "latency_ms": 470,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro."
+    },
+    {
+      "i": 3,
+      "variant": "estrattiva_50",
+      "tokens_in": 696,
+      "tokens_out": 20,
+      "latency_ms": 493,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro."
+    },
+    {
+      "i": 3,
+      "variant": "estrattiva_30",
+      "tokens_in": 443,
+      "tokens_out": 20,
+      "latency_ms": 495,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro."
+    },
+    {
+      "i": 3,
+      "variant": "agnostica_50",
+      "tokens_in": 693,
+      "tokens_out": 27,
+      "latency_ms": 1019,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il limite di spesa cloud mensile del team dati è impostato dalla variabile `SAI_BUDGET_EUR`."
+    },
+    {
+      "i": 3,
+      "variant": "agnostica_30",
+      "tokens_in": 441,
+      "tokens_out": 22,
+      "latency_ms": 776,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il limite di spesa cloud mensile del team dati non è specificato nel contesto fornito."
+    },
+    {
+      "i": 4,
+      "variant": "originale",
+      "tokens_in": 1500,
+      "tokens_out": 16,
+      "latency_ms": 525,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 4,
+      "variant": "estrattiva_50",
+      "tokens_in": 744,
+      "tokens_out": 16,
+      "latency_ms": 464,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 4,
+      "variant": "estrattiva_30",
+      "tokens_in": 491,
+      "tokens_out": 16,
+      "latency_ms": 428,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 4,
+      "variant": "agnostica_50",
+      "tokens_in": 742,
+      "tokens_out": 16,
+      "latency_ms": 574,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 4,
+      "variant": "agnostica_30",
+      "tokens_in": 470,
+      "tokens_out": 16,
+      "latency_ms": 713,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 5,
+      "variant": "originale",
+      "tokens_in": 1728,
+      "tokens_out": 6,
+      "latency_ms": 193,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi."
+    },
+    {
+      "i": 5,
+      "variant": "estrattiva_50",
+      "tokens_in": 823,
+      "tokens_out": 5,
+      "latency_ms": 227,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi"
+    },
+    {
+      "i": 5,
+      "variant": "estrattiva_30",
+      "tokens_in": 527,
+      "tokens_out": 6,
+      "latency_ms": 186,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi."
+    },
+    {
+      "i": 5,
+      "variant": "agnostica_50",
+      "tokens_in": 877,
+      "tokens_out": 21,
+      "latency_ms": 905,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non fornisce informazioni specifiche sul timeout del gateway verso il provider cloud."
+    },
+    {
+      "i": 5,
+      "variant": "agnostica_30",
+      "tokens_in": 558,
+      "tokens_out": 17,
+      "latency_ms": 640,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non contiene informazioni sul timeout del gateway verso il provider cloud."
+    },
+    {
+      "i": 6,
+      "variant": "originale",
+      "tokens_in": 1217,
+      "tokens_out": 10,
+      "latency_ms": 318,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "qwen2.5:14b"
+    },
+    {
+      "i": 6,
+      "variant": "estrattiva_50",
+      "tokens_in": 595,
+      "tokens_out": 10,
+      "latency_ms": 378,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "qwen2.5:14b"
+    },
+    {
+      "i": 6,
+      "variant": "estrattiva_30",
+      "tokens_in": 391,
+      "tokens_out": 23,
+      "latency_ms": 672,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il reparto legale usa il modello qwen2.5:14b di riserva."
+    },
+    {
+      "i": 6,
+      "variant": "agnostica_50",
+      "tokens_in": 597,
+      "tokens_out": 20,
+      "latency_ms": 775,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il reparto legale usa il modello qwen2.5:14b."
+    },
+    {
+      "i": 6,
+      "variant": "agnostica_30",
+      "tokens_in": 392,
+      "tokens_out": 22,
+      "latency_ms": 794,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non contiene informazioni sul modello di riserva usato dal reparto legale."
+    },
+    {
+      "i": 7,
+      "variant": "originale",
+      "tokens_in": 1267,
+      "tokens_out": 8,
+      "latency_ms": 295,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 7,
+      "variant": "estrattiva_50",
+      "tokens_in": 630,
+      "tokens_out": 8,
+      "latency_ms": 303,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 7,
+      "variant": "estrattiva_30",
+      "tokens_in": 429,
+      "tokens_out": 8,
+      "latency_ms": 230,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 7,
+      "variant": "agnostica_50",
+      "tokens_in": 630,
+      "tokens_out": 8,
+      "latency_ms": 235,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 7,
+      "variant": "agnostica_30",
+      "tokens_in": 429,
+      "tokens_out": 8,
+      "latency_ms": 237,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 8,
+      "variant": "originale",
+      "tokens_in": 1143,
+      "tokens_out": 20,
+      "latency_ms": 606,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 8,
+      "variant": "estrattiva_50",
+      "tokens_in": 559,
+      "tokens_out": 20,
+      "latency_ms": 804,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 8,
+      "variant": "estrattiva_30",
+      "tokens_in": 365,
+      "tokens_out": 20,
+      "latency_ms": 572,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 8,
+      "variant": "agnostica_50",
+      "tokens_in": 559,
+      "tokens_out": 20,
+      "latency_ms": 489,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 8,
+      "variant": "agnostica_30",
+      "tokens_in": 381,
+      "tokens_out": 20,
+      "latency_ms": 665,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 9,
+      "variant": "originale",
+      "tokens_in": 1174,
+      "tokens_out": 5,
+      "latency_ms": 220,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "7319"
+    },
+    {
+      "i": 9,
+      "variant": "estrattiva_50",
+      "tokens_in": 578,
+      "tokens_out": 17,
+      "latency_ms": 722,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 9,
+      "variant": "estrattiva_30",
+      "tokens_in": 395,
+      "tokens_out": 17,
+      "latency_ms": 515,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 9,
+      "variant": "agnostica_50",
+      "tokens_in": 583,
+      "tokens_out": 17,
+      "latency_ms": 693,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 9,
+      "variant": "agnostica_30",
+      "tokens_in": 388,
+      "tokens_out": 19,
+      "latency_ms": 726,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding gira su 7319."
+    },
+    {
+      "i": 10,
+      "variant": "originale",
+      "tokens_in": 1817,
+      "tokens_out": 8,
+      "latency_ms": 312,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 10,
+      "variant": "estrattiva_50",
+      "tokens_in": 896,
+      "tokens_out": 8,
+      "latency_ms": 369,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 10,
+      "variant": "estrattiva_30",
+      "tokens_in": 583,
+      "tokens_out": 8,
+      "latency_ms": 475,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 10,
+      "variant": "agnostica_50",
+      "tokens_in": 899,
+      "tokens_out": 8,
+      "latency_ms": 652,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 10,
+      "variant": "agnostica_30",
+      "tokens_in": 583,
+      "tokens_out": 8,
+      "latency_ms": 466,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "ORCA-7731"
+    },
+    {
+      "i": 11,
+      "variant": "originale",
+      "tokens_in": 1279,
+      "tokens_out": 23,
+      "latency_ms": 608,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 11,
+      "variant": "estrattiva_50",
+      "tokens_in": 646,
+      "tokens_out": 23,
+      "latency_ms": 610,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 11,
+      "variant": "estrattiva_30",
+      "tokens_in": 403,
+      "tokens_out": 23,
+      "latency_ms": 578,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 11,
+      "variant": "agnostica_50",
+      "tokens_in": 641,
+      "tokens_out": 23,
+      "latency_ms": 890,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 11,
+      "variant": "agnostica_30",
+      "tokens_in": 419,
+      "tokens_out": 23,
+      "latency_ms": 799,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La finestra di manutenzione del database è il giovedì alle 03:40."
+    },
+    {
+      "i": 12,
+      "variant": "originale",
+      "tokens_in": 1266,
+      "tokens_out": 16,
+      "latency_ms": 486,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il responsabile del servizio pagamenti è Ilaria Ventimiglia."
+    },
+    {
+      "i": 12,
+      "variant": "estrattiva_50",
+      "tokens_in": 634,
+      "tokens_out": 16,
+      "latency_ms": 493,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il responsabile del servizio pagamenti è Ilaria Ventimiglia."
+    },
+    {
+      "i": 12,
+      "variant": "estrattiva_30",
+      "tokens_in": 400,
+      "tokens_out": 16,
+      "latency_ms": 468,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il responsabile del servizio pagamenti è Ilaria Ventimiglia."
+    },
+    {
+      "i": 12,
+      "variant": "agnostica_50",
+      "tokens_in": 634,
+      "tokens_out": 16,
+      "latency_ms": 464,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il responsabile del servizio pagamenti è Ilaria Ventimiglia."
+    },
+    {
+      "i": 12,
+      "variant": "agnostica_30",
+      "tokens_in": 404,
+      "tokens_out": 7,
+      "latency_ms": 379,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Ilaria Ventimiglia."
+    },
+    {
+      "i": 13,
+      "variant": "originale",
+      "tokens_in": 1435,
+      "tokens_out": 20,
+      "latency_ms": 596,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro."
+    },
+    {
+      "i": 13,
+      "variant": "estrattiva_50",
+      "tokens_in": 723,
+      "tokens_out": 20,
+      "latency_ms": 601,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro."
+    },
+    {
+      "i": 13,
+      "variant": "estrattiva_30",
+      "tokens_in": 450,
+      "tokens_out": 23,
+      "latency_ms": 651,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il limite di spesa cloud mensile del team dati è di 740 euro al mese."
+    },
+    {
+      "i": 13,
+      "variant": "agnostica_50",
+      "tokens_in": 712,
+      "tokens_out": 35,
+      "latency_ms": 1125,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il limite di spesa cloud mensile del team dati è specificato dal parametro `SAI_BUDGET_EUR`, che si azzera ogni giorno U"
+    },
+    {
+      "i": 13,
+      "variant": "agnostica_30",
+      "tokens_in": 461,
+      "tokens_out": 34,
+      "latency_ms": 1108,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "È il comportamento voluto modificare `SAI_BUDGET_EUR` per alzare il limite di spesa cloud mensile del team dati."
+    },
+    {
+      "i": 14,
+      "variant": "originale",
+      "tokens_in": 1410,
+      "tokens_out": 16,
+      "latency_ms": 492,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 14,
+      "variant": "estrattiva_50",
+      "tokens_in": 694,
+      "tokens_out": 16,
+      "latency_ms": 495,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 14,
+      "variant": "estrattiva_30",
+      "tokens_in": 441,
+      "tokens_out": 16,
+      "latency_ms": 471,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 14,
+      "variant": "agnostica_50",
+      "tokens_in": 694,
+      "tokens_out": 16,
+      "latency_ms": 462,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 14,
+      "variant": "agnostica_30",
+      "tokens_in": 441,
+      "tokens_out": 16,
+      "latency_ms": 471,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La chiave di partizione della tabella ordini è customer_region."
+    },
+    {
+      "i": 15,
+      "variant": "originale",
+      "tokens_in": 1746,
+      "tokens_out": 6,
+      "latency_ms": 227,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi."
+    },
+    {
+      "i": 15,
+      "variant": "estrattiva_50",
+      "tokens_in": 836,
+      "tokens_out": 6,
+      "latency_ms": 249,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi."
+    },
+    {
+      "i": 15,
+      "variant": "estrattiva_30",
+      "tokens_in": 529,
+      "tokens_out": 6,
+      "latency_ms": 217,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "47 secondi."
+    },
+    {
+      "i": 15,
+      "variant": "agnostica_50",
+      "tokens_in": 858,
+      "tokens_out": 26,
+      "latency_ms": 1038,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non fornisce l'informazione specifica sui secondi del timeout del gateway verso il provider cloud."
+    },
+    {
+      "i": 15,
+      "variant": "agnostica_30",
+      "tokens_in": 548,
+      "tokens_out": 19,
+      "latency_ms": 706,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non fornisce informazioni sul timeout del gateway verso il provider cloud."
+    },
+    {
+      "i": 16,
+      "variant": "originale",
+      "tokens_in": 1166,
+      "tokens_out": 23,
+      "latency_ms": 624,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il reparto legale usa il modello qwen2.5:14b di riserva."
+    },
+    {
+      "i": 16,
+      "variant": "estrattiva_50",
+      "tokens_in": 588,
+      "tokens_out": 23,
+      "latency_ms": 662,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il reparto legale usa il modello di riserva qwen2.5:14b."
+    },
+    {
+      "i": 16,
+      "variant": "estrattiva_30",
+      "tokens_in": 376,
+      "tokens_out": 23,
+      "latency_ms": 641,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Il reparto legale usa il modello qwen2.5:14b come riserva."
+    },
+    {
+      "i": 16,
+      "variant": "agnostica_50",
+      "tokens_in": 578,
+      "tokens_out": 39,
+      "latency_ms": 1283,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il reparto legale non usa un modello di riserva specifico, i dati sensibili non lasciano mai la macchina, nemmeno verso "
+    },
+    {
+      "i": 16,
+      "variant": "agnostica_30",
+      "tokens_in": 381,
+      "tokens_out": 22,
+      "latency_ms": 750,
+      "correct": false,
+      "fact_kept": false,
+      "answer": "Il contesto non menziona il modello di riserva usato dal reparto legale."
+    },
+    {
+      "i": 17,
+      "variant": "originale",
+      "tokens_in": 1087,
+      "tokens_out": 8,
+      "latency_ms": 266,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 17,
+      "variant": "estrattiva_50",
+      "tokens_in": 530,
+      "tokens_out": 8,
+      "latency_ms": 270,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 17,
+      "variant": "estrattiva_30",
+      "tokens_in": 359,
+      "tokens_out": 8,
+      "latency_ms": 244,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 17,
+      "variant": "agnostica_50",
+      "tokens_in": 530,
+      "tokens_out": 8,
+      "latency_ms": 197,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 17,
+      "variant": "agnostica_30",
+      "tokens_in": 359,
+      "tokens_out": 8,
+      "latency_ms": 197,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "nightly-vault-eu3"
+    },
+    {
+      "i": 18,
+      "variant": "originale",
+      "tokens_in": 1346,
+      "tokens_out": 20,
+      "latency_ms": 502,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 18,
+      "variant": "estrattiva_50",
+      "tokens_in": 676,
+      "tokens_out": 20,
+      "latency_ms": 589,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 18,
+      "variant": "estrattiva_30",
+      "tokens_in": 432,
+      "tokens_out": 20,
+      "latency_ms": 567,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 18,
+      "variant": "agnostica_50",
+      "tokens_in": 665,
+      "tokens_out": 20,
+      "latency_ms": 820,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 18,
+      "variant": "agnostica_30",
+      "tokens_in": 437,
+      "tokens_out": 20,
+      "latency_ms": 757,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "Lo SLA di risposta per i ticket critici è di 25 minuti."
+    },
+    {
+      "i": 19,
+      "variant": "originale",
+      "tokens_in": 978,
+      "tokens_out": 17,
+      "latency_ms": 503,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 19,
+      "variant": "estrattiva_50",
+      "tokens_in": 464,
+      "tokens_out": 17,
+      "latency_ms": 535,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 19,
+      "variant": "estrattiva_30",
+      "tokens_in": 315,
+      "tokens_out": 17,
+      "latency_ms": 515,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 19,
+      "variant": "agnostica_50",
+      "tokens_in": 472,
+      "tokens_out": 17,
+      "latency_ms": 711,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    },
+    {
+      "i": 19,
+      "variant": "agnostica_30",
+      "tokens_in": 322,
+      "tokens_out": 17,
+      "latency_ms": 620,
+      "correct": true,
+      "fact_kept": true,
+      "answer": "La porta interna del servizio di embedding è 7319."
+    }
+  ]
+}

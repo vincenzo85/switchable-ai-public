@@ -1,0 +1,41 @@
+# LiteLLM — la torre di controllo "switchabile".
+# Gli alias sono quelli usati da app/composition.py in modalità gateway
+# (SAI_GATEWAY_URL=http://localhost:4000).
+#   fast-local   → task semplici/ripetitivi (Ollama sull'host)
+#   rag-local    → sintesi sul contesto recuperato localmente
+#   smart-cloud  → reasoning complesso, con FALLBACK su fast-local
+#   fast-vllm    → stesso ruolo di fast-local, servito da vLLM sull'host (:8010)
+
+model_list:
+  - model_name: fast-local
+    litellm_params:
+      model: ollama/qwen2.5:7b
+      api_base: http://127.0.0.1:11434
+
+  - model_name: rag-local
+    litellm_params:
+      model: ollama/qwen2.5:7b
+      api_base: http://127.0.0.1:11434
+
+  - model_name: smart-cloud
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+
+  - model_name: fast-vllm
+    litellm_params:
+      model: openai/Qwen/Qwen2.5-1.5B-Instruct
+      api_base: http://127.0.0.1:8010/v1
+      api_key: "none"
+
+router_settings:
+  # la tesi del talk: il cloud può cadere o rallentare, il locale no
+  fallbacks:
+    - smart-cloud: ["fast-local"]
+    - fast-vllm: ["fast-local"]
+  num_retries: 0          # i retry li decide il core (latency budget), non il gateway
+  timeout: 60
+
+litellm_settings:
+  drop_params: true
+  request_timeout: 120

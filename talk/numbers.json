@@ -1,0 +1,815 @@
+{
+ "meta": {
+  "generated_from": [
+   "advisor.json",
+   "bibliography.json",
+   "compression.json",
+   "mcp.json",
+   "mutation.json",
+   "n8n_ingest.json",
+   "rag.json",
+   "router_tuning.json",
+   "stress.json",
+   "tco.json",
+   "vllm_vs_ollama.json"
+  ],
+  "cloud_simulation_note": "SIMULATO: risponde qwen2.5:7b locale, prezzo di listino gpt-4o, rallentamenti programmati sulle chiamate cloud 5-11 (timeout simulati: 4)"
+ },
+ "numbers": {
+  "tco.cost_real": {
+   "value": 0.0011124,
+   "display": "€0.0011",
+   "label": "costo reale demo (12 richieste)",
+   "source": "benchmarks/results/tco.json#totals.cost_eur",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.cost_if_cloud": {
+   "value": 0.0255852,
+   "display": "€0.0256",
+   "label": "stesso lavoro se tutto in cloud",
+   "source": "benchmarks/results/tco.json#totals.cost_if_cloud_eur",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.saving_energy_only": {
+   "value": 95.65217391304348,
+   "display": "96%",
+   "label": "risparmio se il locale costa solo energia (= rapporto di prezzo)",
+   "source": "benchmarks/results/tco.json#totals.saving_pct",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.fallbacks": {
+   "value": 3,
+   "display": "3",
+   "label": "fallback reali (cloud senza chiave)",
+   "source": "benchmarks/results/tco.json#totals.fallbacks",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.local_tps": {
+   "value": 42.31700151439368,
+   "display": "42 tok/s",
+   "label": "throughput qwen2.5:7b su RTX 4070 Laptop",
+   "source": "benchmarks/results/tco.json#local_throughput.tokens_per_sec_p50",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.amortized_eur_mtok_u5": {
+   "value": 10.405654017517818,
+   "display": "€10.41/Mtok",
+   "label": "costo locale ammortizzato a utilizzo 5% (ipotesi hw dichiarata)",
+   "source": "benchmarks/results/tco.json#local_amortized_eur_per_mtok.utilization_5pct.total",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.amortized_eur_mtok_u25": {
+   "value": 2.301688333558209,
+   "display": "€2.30/Mtok",
+   "label": "costo locale ammortizzato a utilizzo 25% (ipotesi hw dichiarata)",
+   "source": "benchmarks/results/tco.json#local_amortized_eur_per_mtok.utilization_25pct.total",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.amortized_eur_mtok_u80": {
+   "value": 0.9088192316276505,
+   "display": "€0.91/Mtok",
+   "label": "costo locale ammortizzato a utilizzo 80% (ipotesi hw dichiarata)",
+   "source": "benchmarks/results/tco.json#local_amortized_eur_per_mtok.utilization_80pct.total",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.assumption": {
+   "value": {
+    "hw_eur": 2000,
+    "amort_months": 36,
+    "watts": 140,
+    "eur_kwh": 0.3
+   },
+   "label": "IPOTESI hardware/energia (non misurata)",
+   "display": "2000 € di hardware, 36 mesi, 140 W, 0,30 €/kWh",
+   "source": "benchmarks/results/tco.json#local_amortized_eur_per_mtok.assumption",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.cloud_price_eur_mtok": {
+   "value": 4.6,
+   "display": "€4.60/Mtok",
+   "label": "listino cloud di riferimento (gpt-4o, blended)",
+   "source": "benchmarks/results/tco.json#pricing_eur_per_1k",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.task_a.latency": {
+   "value": 65.0,
+   "display": "65 ms",
+   "label": "Task A — classificazione semplice: latenza p50 (local→ollama/qwen2.5:7b)",
+   "source": "benchmarks/results/tco.json#by_task.Task A — classificazione semplice",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.task_b.latency": {
+   "value": 5907.0,
+   "display": "5.9 s",
+   "label": "Task B — reasoning complesso: latenza p50 (cloud→ollama/qwen2.5:7b)",
+   "source": "benchmarks/results/tco.json#by_task.Task B — reasoning complesso",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.task_c.latency": {
+   "value": 5535.0,
+   "display": "5.5 s",
+   "label": "Task C — domanda sulla knowledge base: latenza p50 (local_rag→ollama/qwen2.5:7b)",
+   "source": "benchmarks/results/tco.json#by_task.Task C — domanda sulla knowledge base",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.task_d.latency": {
+   "value": 6297.0,
+   "display": "6.3 s",
+   "label": "Task D — dato sensibile: latenza p50 (local→ollama/qwen2.5:7b)",
+   "source": "benchmarks/results/tco.json#by_task.Task D — dato sensibile",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "tco.breakeven_utilization": {
+   "value": 0.11712820424627009,
+   "display": "12%",
+   "label": "utilizzo GPU a cui il locale costa quanto il cloud (con l'ipotesi hw)",
+   "source": "benchmarks/results/tco.json#local_amortized_eur_per_mtok (calcolato)",
+   "measured_at": "2026-10-03T21:48:42+02:00"
+  },
+  "legacy.cost": {
+   "value": 0.00121,
+   "display": "€0.00121 vs €0.02774",
+   "label": "router_llm (legacy), 3×3 task",
+   "source": "benchmarks/results/legacy_tco_report_2026-07-03.md",
+   "measured_at": "2026-07-03"
+  },
+  "compression.estrattiva_50.saving": {
+   "value": 50.690005810575244,
+   "display": "51%",
+   "label": "token risparmiati (estrattiva_50)",
+   "source": "benchmarks/results/compression.json#summary.estrattiva_50.token_saving_pct",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.estrattiva_50.accuracy": {
+   "value": 1.0,
+   "display": "100%",
+   "label": "risposte corrette (estrattiva_50)",
+   "source": "benchmarks/results/compression.json#summary.estrattiva_50.accuracy",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.estrattiva_30.saving": {
+   "value": 67.99462521789657,
+   "display": "68%",
+   "label": "token risparmiati (estrattiva_30)",
+   "source": "benchmarks/results/compression.json#summary.estrattiva_30.token_saving_pct",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.estrattiva_30.accuracy": {
+   "value": 1.0,
+   "display": "100%",
+   "label": "risposte corrette (estrattiva_30)",
+   "source": "benchmarks/results/compression.json#summary.estrattiva_30.accuracy",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.agnostica_50.saving": {
+   "value": 50.48663567693201,
+   "display": "50%",
+   "label": "token risparmiati (agnostica_50)",
+   "source": "benchmarks/results/compression.json#summary.agnostica_50.token_saving_pct",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.agnostica_50.accuracy": {
+   "value": 0.75,
+   "display": "75%",
+   "label": "risposte corrette (agnostica_50)",
+   "source": "benchmarks/results/compression.json#summary.agnostica_50.accuracy",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.agnostica_30.saving": {
+   "value": 67.68230679837303,
+   "display": "68%",
+   "label": "token risparmiati (agnostica_30)",
+   "source": "benchmarks/results/compression.json#summary.agnostica_30.token_saving_pct",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.agnostica_30.accuracy": {
+   "value": 0.7,
+   "display": "70%",
+   "label": "risposte corrette (agnostica_30)",
+   "source": "benchmarks/results/compression.json#summary.agnostica_30.accuracy",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "compression.originale.accuracy": {
+   "value": 1.0,
+   "display": "100%",
+   "label": "risposte corrette senza compressione",
+   "source": "benchmarks/results/compression.json#summary.originale.accuracy",
+   "measured_at": "2026-10-03T21:51:18+02:00"
+  },
+  "vllm.ollama.c1.tps": {
+   "value": 174.86784380190343,
+   "display": "175 tok/s",
+   "label": "ollama throughput a concorrenza 1",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.0.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.ollama.c1.ttft": {
+   "value": 11.268870999629144,
+   "display": "11 ms",
+   "label": "ollama TTFT p50 a concorrenza 1",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.0.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.ollama.c4.tps": {
+   "value": 175.11290522762386,
+   "display": "175 tok/s",
+   "label": "ollama throughput a concorrenza 4",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.1.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.ollama.c4.ttft": {
+   "value": 1734.3634939998083,
+   "display": "1.7 s",
+   "label": "ollama TTFT p50 a concorrenza 4",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.1.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.ollama.c16.tps": {
+   "value": 167.0026082958974,
+   "display": "167 tok/s",
+   "label": "ollama throughput a concorrenza 16",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.2.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.ollama.c16.ttft": {
+   "value": 8690.708881500086,
+   "display": "8.7 s",
+   "label": "ollama TTFT p50 a concorrenza 16",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.ollama.concurrency.2.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c1.tps": {
+   "value": 74.73202458907802,
+   "display": "75 tok/s",
+   "label": "vllm throughput a concorrenza 1",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.0.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c1.ttft": {
+   "value": 20.010064999951283,
+   "display": "20 ms",
+   "label": "vllm TTFT p50 a concorrenza 1",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.0.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c4.tps": {
+   "value": 297.08959825561146,
+   "display": "297 tok/s",
+   "label": "vllm throughput a concorrenza 4",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.1.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c4.ttft": {
+   "value": 34.87639700006184,
+   "display": "35 ms",
+   "label": "vllm TTFT p50 a concorrenza 4",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.1.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c16.tps": {
+   "value": 1111.6595610932347,
+   "display": "1.112 tok/s",
+   "label": "vllm throughput a concorrenza 16",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.2.throughput_tok_s",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.vllm.c16.ttft": {
+   "value": 91.73753299955933,
+   "display": "92 ms",
+   "label": "vllm TTFT p50 a concorrenza 16",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results.vllm.concurrency.2.ttft_p50_ms",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.max_concurrency": {
+   "value": 16,
+   "display": "16",
+   "label": "concorrenza massima del test",
+   "source": "benchmarks/results/vllm_vs_ollama.json#levels",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "vllm.speedup_batch": {
+   "value": 6.6565401129758515,
+   "display": "6.7×",
+   "label": "vLLM/Ollama throughput a concorrenza 16",
+   "source": "benchmarks/results/vllm_vs_ollama.json#results",
+   "measured_at": "2026-10-03T21:55:35+02:00"
+  },
+  "router.deterministic.scenario": {
+   "value": 1.0,
+   "display": "100%",
+   "label": "deterministic: accuratezza sul batch di atterraggio",
+   "source": "benchmarks/results/advisor.json#results.deterministic.scenario.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.deterministic.heldout": {
+   "value": 0.53125,
+   "display": "53%",
+   "label": "deterministic: accuratezza sul set di controllo",
+   "source": "benchmarks/results/advisor.json#results.deterministic.heldout.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.deterministic.latency": {
+   "value": 0,
+   "display": "0 ms",
+   "label": "deterministic: latenza aggiunta p50",
+   "source": "benchmarks/results/advisor.json#results.deterministic.heldout.latency_p50_ms",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.rizzo.scenario": {
+   "value": 0.99,
+   "display": "99%",
+   "label": "rizzo: accuratezza sul batch di atterraggio",
+   "source": "benchmarks/results/advisor.json#results.rizzo.scenario.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.rizzo.heldout": {
+   "value": 0.65625,
+   "display": "66%",
+   "label": "rizzo: accuratezza sul set di controllo",
+   "source": "benchmarks/results/advisor.json#results.rizzo.heldout.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.rizzo.latency": {
+   "value": 76.0,
+   "display": "76 ms",
+   "label": "rizzo: latenza aggiunta p50",
+   "source": "benchmarks/results/advisor.json#results.rizzo.heldout.latency_p50_ms",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.openjev.scenario": {
+   "value": 0.88,
+   "display": "88%",
+   "label": "openjev: accuratezza sul batch di atterraggio",
+   "source": "benchmarks/results/advisor.json#results.openjev.scenario.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.openjev.heldout": {
+   "value": 0.65625,
+   "display": "66%",
+   "label": "openjev: accuratezza sul set di controllo",
+   "source": "benchmarks/results/advisor.json#results.openjev.heldout.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.openjev.latency": {
+   "value": 203.5,
+   "display": "204 ms",
+   "label": "openjev: latenza aggiunta p50",
+   "source": "benchmarks/results/advisor.json#results.openjev.heldout.latency_p50_ms",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.heldout_n": {
+   "value": 32,
+   "display": "32",
+   "label": "richieste nel set di controllo",
+   "source": "benchmarks/results/advisor.json#heldout_tasks",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.deterministic.heldout_rag": {
+   "value": 0.125,
+   "display": "12%",
+   "label": "regole: domande sui documenti interni riconosciute (senza parole chiave)",
+   "source": "benchmarks/results/advisor.json#results.deterministic.heldout.per_family.local_rag.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "router.deterministic.heldout_cloud": {
+   "value": 0.0,
+   "display": "0%",
+   "label": "regole: task complessi brevi riconosciuti",
+   "source": "benchmarks/results/advisor.json#results.deterministic.heldout.per_family.cloud.accuracy",
+   "measured_at": "2026-10-03T22:05:19+02:00"
+  },
+  "quality.mutation_killed": {
+   "value": 15,
+   "display": "15",
+   "label": "mutazioni uccise dai test",
+   "source": "benchmarks/results/mutation.json#killed",
+   "measured_at": "2026-10-04T00:37:13+02:00"
+  },
+  "quality.mutation_total": {
+   "value": 15,
+   "display": "15",
+   "label": "mutazioni applicate",
+   "source": "benchmarks/results/mutation.json#total",
+   "measured_at": "2026-10-04T00:37:13+02:00"
+  },
+  "mcp.tools": {
+   "value": 6,
+   "display": "6",
+   "label": "tool MCP esposti",
+   "source": "benchmarks/results/mcp.json#tools",
+   "measured_at": "2026-10-03T22:25:58+02:00"
+  },
+  "mcp.definition_tokens": {
+   "value": 399,
+   "display": "~399 token",
+   "label": "peso delle definizioni dei tool in ogni richiesta",
+   "source": "benchmarks/results/mcp.json#definitions_tokens_approx",
+   "measured_at": "2026-10-03T22:25:58+02:00"
+  },
+  "router.dev_n": {
+   "value": 42,
+   "display": "42",
+   "label": "richieste nel set dev",
+   "source": "benchmarks/results/router_tuning.json#dev_size",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.test": {
+   "value": 0.78125,
+   "display": "78%",
+   "label": "Rizzo Flow con descrizioni v2 (scelte sul dev): rotta giusta sul test",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.test.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.dev": {
+   "value": 0.8571428571428571,
+   "display": "86%",
+   "label": "Rizzo Flow v2 sul dev",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.dev.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.latency": {
+   "value": 89.90625,
+   "display": "90 ms",
+   "label": "Rizzo Flow v2: latenza media aggiunta",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.test.latency_mean_ms",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.cloud": {
+   "value": 0.625,
+   "display": "62%",
+   "label": "Rizzo Flow v2: task complessi riconosciuti",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.test.per_family.cloud.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.rag": {
+   "value": 0.625,
+   "display": "62%",
+   "label": "Rizzo Flow v2: domande sui documenti interni riconosciute",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.test.per_family.local_rag.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.rizzo.cloud_errors": {
+   "value": 1,
+   "display": "1",
+   "label": "Rizzo Flow v2: richieste mandate in cloud senza motivo",
+   "source": "benchmarks/results/router_tuning.json#final.rizzo.test.cloud_when_not_gold",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.openjev.test": {
+   "value": 0.5625,
+   "display": "56%",
+   "label": "Open-Jev con descrizioni v2 sul test",
+   "source": "benchmarks/results/router_tuning.json#final.openjev.test.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.openjev.cloud_errors": {
+   "value": 6,
+   "display": "6",
+   "label": "Open-Jev v2: richieste mandate in cloud senza motivo",
+   "source": "benchmarks/results/router_tuning.json#final.openjev.test.cloud_when_not_gold",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.tuned.both_orders_dev": {
+   "value": 0.8571428571428571,
+   "display": "86%",
+   "label": "doppio ordine dei candidati (dev): nessun guadagno",
+   "source": "benchmarks/results/router_tuning.json#grid.active|2ordini|desc_v2.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "router.rules.dev": {
+   "value": 0.5,
+   "display": "50%",
+   "label": "regole sul set dev",
+   "source": "benchmarks/results/router_tuning.json#rules.dev.accuracy",
+   "measured_at": "2026-10-04T00:31:08+02:00"
+  },
+  "lit.frugalgpt": {
+   "value": "98%",
+   "display": "−98%",
+   "label": "FrugalGPT: costo in meno a parità di qualità (cascata di modelli)",
+   "arxiv": "2305.05176",
+   "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance",
+   "source": "benchmarks/results/bibliography.json#2305.05176 (abstract)",
+   "measured_at": "2023-05-09"
+  },
+  "lit.routellm": {
+   "value": "2 volte",
+   "display": "costi ÷2",
+   "label": "RouteLLM: costi ridotti di oltre 2 volte senza perdere qualità",
+   "arxiv": "2406.18665",
+   "title": "RouteLLM: Learning to Route LLMs with Preference Data",
+   "source": "benchmarks/results/bibliography.json#2406.18665 (abstract)",
+   "measured_at": "2024-06-26"
+  },
+  "lit.hybrid": {
+   "value": "40%",
+   "display": "−40%",
+   "label": "Hybrid LLM: chiamate al modello grande in meno",
+   "arxiv": "2404.14618",
+   "title": "Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing",
+   "source": "benchmarks/results/bibliography.json#2404.14618 (abstract)",
+   "measured_at": "2024-04-22"
+  },
+  "lit.patil": {
+   "value": "24x",
+   "display": "fino a 24×",
+   "label": "Patil: penalità di costo per sottoutilizzo della GPU",
+   "arxiv": "2606.11690",
+   "title": "Beyond Per-Token Pricing: A Concurrency-Aware Methodology for LLM Infrastructure Cost Estimation",
+   "source": "benchmarks/results/bibliography.json#2606.11690 (abstract)",
+   "measured_at": "2026-06-10"
+  },
+  "lit.inference_econ": {
+   "value": "88,6%",
+   "display": "−88,6%",
+   "label": "Inference Economics: costo API effettivo ridotto dal prompt caching",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.llmlingua": {
+   "value": "20x",
+   "display": "fino a 20×",
+   "label": "LLMLingua: compressione del prompt con poca perdita",
+   "arxiv": "2310.05736",
+   "title": "LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models",
+   "source": "benchmarks/results/bibliography.json#2310.05736 (abstract)",
+   "measured_at": "2023-10-09"
+  },
+  "lit.capc": {
+   "value": "90%",
+   "display": "−90%",
+   "label": "CAPC: costo rispetto al prompt non compresso",
+   "arxiv": "2607.15516",
+   "title": "Cache-Aware Prompt Compression:A Two-Tier Cost Model for LLM API Caching",
+   "source": "benchmarks/results/bibliography.json#2607.15516 (abstract)",
+   "measured_at": "2026-07-17"
+  },
+  "lit.mcp_cli": {
+   "value": "28x",
+   "display": "da 5× a 28×",
+   "label": "MCP vs CLI: quanto costano di più le definizioni esaustive dei tool",
+   "arxiv": "2608.08654",
+   "title": "The Scaffolding Matters More Than the Interface: A Controlled Comparison of MCP and CLI Tool Use Across Seven Agent Scaffoldings, Five Language Models, and One Software Task",
+   "source": "benchmarks/results/bibliography.json#2608.08654 (abstract)",
+   "measured_at": "2026-08-09"
+  },
+  "lit.agent_tokens": {
+   "value": "1000 volte",
+   "display": "fino a 1000×",
+   "label": "token dei task agentici rispetto a una chat sul codice",
+   "arxiv": "2604.22750",
+   "title": "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks",
+   "source": "benchmarks/results/bibliography.json#2604.22750 (abstract)",
+   "measured_at": "2026-04-24"
+  },
+  "lit.flywheel": {
+   "value": "50%",
+   "display": "50%",
+   "label": "traffico aziendale assorbito dal modello self-hosted addestrato sul proprio traffico",
+   "arxiv": "2609.01572",
+   "title": "From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix",
+   "source": "benchmarks/results/bibliography.json#2609.01572 (abstract)",
+   "measured_at": "2026-09-01"
+  },
+  "lit.continuity": {
+   "value": "99,20%",
+   "display": "99,2%",
+   "label": "ContinuityBench: continuità della conversazione con failover stateful",
+   "arxiv": "2607.15899",
+   "title": "ContinuityBench: A Benchmark and Systems Study of Stateful Failover in Multi-Provider LLM Routing",
+   "source": "benchmarks/results/bibliography.json#2607.15899 (abstract)",
+   "measured_at": "2026-07-17"
+  },
+  "lit.inference_econ_cloud": {
+   "value": "0,57",
+   "display": "$0.57/Mtok",
+   "label": "Inference Economics: costo API effettivo con prompt caching",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.inference_econ_local": {
+   "value": "2,83",
+   "display": "$2.83/Mtok",
+   "label": "Inference Economics: costo ammortizzato della quota GPU locale condivisa",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.fcr_local": {
+   "value": "74.9%",
+   "display": "74.9%",
+   "label": "Inference Economics: commit di riparazione col modello locale",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.fcr_cloud": {
+   "value": "45.9%",
+   "display": "45.9%",
+   "label": "Inference Economics: commit di riparazione col modello cloud",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.dedicated_more": {
+   "value": "43.8%",
+   "display": "+43.8%",
+   "label": "Inference Economics: costo in più del locale con GPU dedicata rispetto al cloud con caching",
+   "arxiv": "2607.13080",
+   "title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+   "source": "benchmarks/results/bibliography.json#2607.13080 (abstract)",
+   "measured_at": "2026-07-13"
+  },
+  "lit.flywheel_volume": {
+   "value": "116",
+   "display": "116 M",
+   "label": "richieste al mese del traffico aziendale nel caso Tsymboi et al.",
+   "arxiv": "2609.01572",
+   "title": "From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix",
+   "source": "benchmarks/results/bibliography.json#2609.01572 (abstract)",
+   "measured_at": "2026-09-01"
+  },
+  "rag.hit_at_3": {
+   "value": 1.0,
+   "display": "100%",
+   "label": "fonte giusta nei primi 3 chunk",
+   "source": "benchmarks/results/rag.json#hit_at_3",
+   "measured_at": "2026-10-03T22:18:20+02:00"
+  },
+  "rag.answer_ok": {
+   "value": 0.8333333333333334,
+   "display": "83%",
+   "label": "risposte con il dato atteso",
+   "source": "benchmarks/results/rag.json#expected_in_answer_rate",
+   "measured_at": "2026-10-03T22:18:20+02:00"
+  },
+  "rag.questions": {
+   "value": 6,
+   "display": "6",
+   "label": "domande di riferimento del benchmark RAG",
+   "source": "benchmarks/results/rag.json#questions",
+   "measured_at": "2026-10-03T22:18:20+02:00"
+  },
+  "n8n.docs": {
+   "value": 3,
+   "display": "3",
+   "label": "documenti ingeriti via webhook n8n",
+   "source": "benchmarks/results/n8n_ingest.json#rows",
+   "measured_at": "2026-10-03T22:16:10+02:00"
+  },
+  "n8n.violations": {
+   "value": 0,
+   "display": "0",
+   "label": "violazioni residency nell'intake n8n",
+   "source": "benchmarks/results/n8n_ingest.json#residency_violations",
+   "measured_at": "2026-10-03T22:16:10+02:00"
+  },
+  "n8n.wall": {
+   "value": 6985,
+   "display": "7.0 s",
+   "label": "tempo per documento (classifica+estrai+indicizza+QA)",
+   "source": "benchmarks/results/n8n_ingest.json#rows.wall_ms",
+   "measured_at": "2026-10-03T22:16:10+02:00"
+  },
+  "stress.total_tasks": {
+   "value": 100,
+   "display": "100",
+   "label": "task nel batch (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.total_tasks",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.completed": {
+   "value": 100,
+   "display": "100",
+   "label": "task completati (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.completed",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.fallback_events": {
+   "value": 4,
+   "display": "4",
+   "label": "fallback durante la turbolenza (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.fallback_events",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.budget_guard_hits": {
+   "value": 40,
+   "display": "40",
+   "label": "richieste con budget guard attivo (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.budget_guard_hits",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.data_residency_violations": {
+   "value": 0,
+   "display": "0",
+   "label": "violazioni di data residency (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.data_residency_violations",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.cost_real_eur": {
+   "value": 0.020964400000000008,
+   "display": "€0.0210",
+   "label": "costo reale del batch (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.cost_real_eur",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.cost_if_all_cloud_eur": {
+   "value": 0.11877199999999999,
+   "display": "€0.1188",
+   "label": "costo se tutto in cloud (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.cost_if_all_cloud_eur",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.saving_pct": {
+   "value": 82.34903849392113,
+   "display": "82%",
+   "label": "risparmio sul batch (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.saving_pct",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.duration_s": {
+   "value": 255.55,
+   "display": "256 s",
+   "label": "durata del batch (cloud simulato)",
+   "source": "benchmarks/results/stress.json#summary.duration_s",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.decided.local": {
+   "value": 70,
+   "display": "70",
+   "label": "rotte decise: local",
+   "source": "benchmarks/results/stress.json#summary.routes_decided.local",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.decided.cloud": {
+   "value": 15,
+   "display": "15",
+   "label": "rotte decise: cloud",
+   "source": "benchmarks/results/stress.json#summary.routes_decided.cloud",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.decided.local_rag": {
+   "value": 15,
+   "display": "15",
+   "label": "rotte decise: local_rag",
+   "source": "benchmarks/results/stress.json#summary.routes_decided.local_rag",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.executed.cloud": {
+   "value": 11,
+   "display": "11",
+   "label": "eseguite davvero in cloud",
+   "source": "benchmarks/results/stress.json#summary.executed_on.cloud",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.latency_p95": {
+   "value": 3502.15,
+   "display": "3.5 s",
+   "label": "latenza p95 del batch (richieste in sequenza)",
+   "source": "benchmarks/results/stress.json#cost_report.latency_ms.p95",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "flywheel.exported": {
+   "value": 49,
+   "display": "49",
+   "label": "flywheel: exported",
+   "source": "benchmarks/results/stress.json#flywheel.exported",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "flywheel.pii_redactions": {
+   "value": 4,
+   "display": "4",
+   "label": "flywheel: pii_redactions",
+   "source": "benchmarks/results/stress.json#flywheel.pii_redactions",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "flywheel.distillation_candidates": {
+   "value": 10,
+   "display": "10",
+   "label": "flywheel: distillation_candidates",
+   "source": "benchmarks/results/stress.json#flywheel.distillation_candidates",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "flywheel.duplicates_skipped": {
+   "value": 51,
+   "display": "51",
+   "label": "flywheel: duplicates_skipped",
+   "source": "benchmarks/results/stress.json#flywheel.duplicates_skipped",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  },
+  "stress.complex_kept_local_by_budget": {
+   "value": 5,
+   "display": "5",
+   "label": "task complessi tenuti in locale dal budget guard",
+   "source": "benchmarks/results/stress.json#timeline",
+   "measured_at": "2026-10-03T22:14:58+02:00"
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "sdlcIntake0001",
+  "name": "SDLC document intake — switchable_ai",
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "nodes": [
+    {
+      "id": "7a1f0d2e-0001-4000-8000-000000000001",
+      "name": "Nuovo documento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "5d0c1f2a-sdlc-4c1e-9a0b-000000000001",
+      "parameters": {"httpMethod": "POST", "path": "sdlc-document", "responseMode": "responseNode", "options": {}}
+    },
+    {
+      "id": "7a1f0d2e-0001-4000-8000-000000000002",
+      "name": "switchable_ai: classifica, estrai, indicizza, QA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [260, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SAI_API }}/webhook/n8n/document",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ name: $json.body.name, text: $json.body.text }) }}",
+        "options": {"timeout": 600000}
+      }
+    },
+    {
+      "id": "7a1f0d2e-0001-4000-8000-000000000003",
+      "name": "Residency rispettata?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [520, 0],
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict"},
+          "conditions": [{"id": "c1", "leftValue": "={{ $json.data_residency_violations }}", "rightValue": 0,
+                          "operator": {"type": "number", "operation": "equals"}}],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "7a1f0d2e-0001-4000-8000-000000000004",
+      "name": "Esito OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [780, -100],
+      "parameters": {"respondWith": "json",
+                     "responseBody": "={{ JSON.stringify({ status: 'landed', category: $json.category, document: $json.document, routes: $json.routes, models: $json.models, cost_eur: $json.cost_eur, cost_if_cloud_eur: $json.cost_if_cloud_eur, checklist: $json.checklist, data_residency_violations: $json.data_residency_violations }) }}",
+                     "options": {}}
+    },
+    {
+      "id": "7a1f0d2e-0001-4000-8000-000000000005",
+      "name": "ALLARME residency",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [780, 100],
+      "parameters": {"respondWith": "json",
+                     "responseBody": "={{ JSON.stringify({ status: 'residency_violation', detail: $json }) }}",
+                     "options": {"responseCode": 500}}
+    }
+  ],
+  "connections": {
+    "Nuovo documento": {"main": [[{"node": "switchable_ai: classifica, estrai, indicizza, QA", "type": "main", "index": 0}]]},
+    "switchable_ai: classifica, estrai, indicizza, QA": {"main": [[{"node": "Residency rispettata?", "type": "main", "index": 0}]]},
+    "Residency rispettata?": {"main": [[{"node": "Esito OK", "type": "main", "index": 0}], [{"node": "ALLARME residency", "type": "main", "index": 0}]]}
+  },
+  "pinData": {}
+}

@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "benchmark": "mcp",
+    "measured_at": "2026-10-03T22:25:58+02:00",
+    "git_commit": "91a0984",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "tools": [
+    "route_prompt",
+    "ask",
+    "rag_search",
+    "cost_report",
+    "stress_test",
+    "flywheel_export"
+  ],
+  "definitions_chars": 1597,
+  "definitions_tokens_approx": 399,
+  "transport": "stdio",
+  "handshake": "ok"
+}

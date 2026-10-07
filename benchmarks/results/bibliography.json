@@ -1,0 +1,668 @@
+{
+  "meta": {
+    "benchmark": "bibliography",
+    "measured_at": "2026-10-04T03:19:41+02:00",
+    "git_commit": "567df03",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "papers": [
+    {
+      "arxiv_id": "2305.05176",
+      "cited_title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance",
+      "authors": [
+        "Lingjiao Chen and Matei Zaharia and James Zou"
+      ],
+      "date": "2023-05-09",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Pareggia le prestazioni del miglior modello singolo (es. GPT-4) riducendo i costi fino al 98%, oppure incrementa l'accuratezza del 4% a parità di budget",
+      "numbers_claimed": [
+        "4",
+        "4%",
+        "98%"
+      ],
+      "numbers_in_abstract": [
+        "4",
+        "4%",
+        "98%"
+      ],
+      "abstract": "There is a rapidly growing number of large language models (LLMs) that users can query for a fee. We review the cost associated with querying popular LLM APIs, e.g. GPT-4, ChatGPT, J1-Jumbo, and find that these models have heterogeneous pricing structures, with fees that can differ by two orders of magnitude. In particular, using LLMs on large collections of queries and text can be expensive. Motivated by this, we outline and discuss three types of strategies that users can exploit to reduce the inference cost associated with using LLMs: 1) prompt adaptation, 2) LLM approximation, and 3) LLM cascade. As an example, we propose FrugalGPT, a simple yet flexible instantiation of LLM cascade which learns which combinations of LLMs to use for different queries in order to reduce cost and improve accuracy. Our experiments show that FrugalGPT can match the performance of the best individual LLM (e.g. GPT-4) with up to 98% cost reduction or improve the accuracy over GPT-4 by 4% with the same cost. The ideas and findings presented here lay a foundation for using LLMs sustainably and efficiently."
+    },
+    {
+      "arxiv_id": "2406.18665",
+      "cited_title": "RouteLLM: Learning to Route LLMs with Preference Data",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "RouteLLM: Learning to Route LLMs with Preference Data",
+      "authors": [
+        "Isaac Ong",
+        "Amjad Almahairi",
+        "Vincent Wu",
+        "Wei-Lin Chiang"
+      ],
+      "date": "2024-06-26",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Abbatte i costi di oltre 2 volte senza perdite nella qualità di risposta e dimostra una forte capacità di transfer learning su coppie di modelli non viste in fase di training",
+      "numbers_claimed": [
+        "2 volte"
+      ],
+      "numbers_in_abstract": [
+        "2 volte"
+      ],
+      "abstract": "Large language models (LLMs) exhibit impressive capabilities across a wide range of tasks, yet the choice of which model to use often involves a trade-off between performance and cost. More powerful models, though effective, come with higher expenses, while less capable models are more cost-effective. To address this dilemma, we propose several efficient router models that dynamically select between a stronger and a weaker LLM during inference, aiming to optimize the balance between cost and response quality. We develop a training framework for these routers leveraging human preference data and data augmentation techniques to enhance performance. Our evaluation on widely-recognized benchmarks shows that our approach significantly reduces costs-by over 2 times in certain cases-without compromising the quality of responses. Interestingly, our router models also demonstrate significant transfer learning capabilities, maintaining their performance even when the strong and weak models are changed at test time. This highlights the potential of these routers to provide a cost-effective yet high-performance solution for deploying LLMs."
+    },
+    {
+      "arxiv_id": "2404.14618",
+      "cited_title": "Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing",
+      "authors": [
+        "Dujian Ding",
+        "Ankur Mallick",
+        "Chi Wang",
+        "Robert Sim"
+      ],
+      "date": "2024-04-22",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Riduce fino al 40% le chiamate ai modelli grandi nel cloud mantenendo inalterata la qualità delle risposte",
+      "numbers_claimed": [
+        "40%"
+      ],
+      "numbers_in_abstract": [
+        "40%"
+      ],
+      "abstract": "Large language models (LLMs) excel in most NLP tasks but also require expensive cloud servers for deployment due to their size, while smaller models that can be deployed on lower cost (e.g., edge) devices, tend to lag behind in terms of response quality. Therefore in this work we propose a hybrid inference approach which combines their respective strengths to save cost and maintain quality. Our approach uses a router that assigns queries to the small or large model based on the predicted query difficulty and the desired quality level. The desired quality level can be tuned dynamically at test time to seamlessly trade quality for cost as per the scenario requirements. In experiments our approach allows us to make up to 40% fewer calls to the large model, with no drop in response quality."
+    },
+    {
+      "arxiv_id": "2506.22716",
+      "cited_title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+      "authors": [
+        "Dujian Ding",
+        "Ankur Mallick",
+        "Shaokun Zhang",
+        "Chi Wang"
+      ],
+      "date": "2025-06-28",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Riduzione dei costi fino al 60% con meno dell'1% di calo prestazionale rispetto all'uso sistematico di GPT-4o",
+      "numbers_claimed": [
+        "1%",
+        "4",
+        "60%"
+      ],
+      "numbers_in_abstract": [
+        "1%",
+        "60%"
+      ],
+      "abstract": "Large language models (LLMs) are powerful tools but are often expensive to deploy at scale. LLM query routing mitigates this by dynamically assigning queries to models of varying cost and quality to obtain a desired trade-off. Prior query routing approaches generate only one response from the selected model and a single response from a small (inexpensive) model was often not good enough to beat a response from a large (expensive) model due to which they end up overusing the large model and missing out on potential cost savings. However, it is well known that for small models, generating multiple responses and selecting the best can enhance quality while remaining cheaper than a single large-model response. We leverage this idea to propose BEST-Route, a novel routing framework that chooses a model and the number of responses to sample from it based on query difficulty and the quality thresholds. Experiments on real-world datasets demonstrate that our method reduces costs by up to 60% with less than 1% performance drop."
+    },
+    {
+      "arxiv_id": "2607.18253",
+      "cited_title": "Beyond Accuracy and Cost: Latency-Aware LLM Query Routing for Dynamic Workloads",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Beyond Accuracy and Cost: Latency-Aware LLM Query Routing for Dynamic Workloads",
+      "authors": [
+        "Shivam Patel",
+        "Akaash R. Parthasarathy",
+        "Ankur Mallick",
+        "Gauri Joshi"
+      ],
+      "date": "2026-05-13",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Ottiene fino al 40% di miglioramento nell'utility costo-accuratezza mantenendo le stesse garanzie di latenza rispetto ai bilanciatori tradizionali (Round-Robin o Shortest Queue)",
+      "numbers_claimed": [
+        "40%"
+      ],
+      "numbers_in_abstract": [
+        "40%"
+      ],
+      "abstract": "Modern language query routers improve inference efficiency by assigning each query to a model that balances response quality and monetary cost. However, current query routers are largely latency-agnostic and do not consider the generation latency experienced by queries at model instances. In practice, latency is often controlled by load-balancing policies such as round-robin or join-the-shortest-queue, which do not account for model accuracy or inference cost. Incorporating query latency into routing is challenging as it depends not only on the query's prompt length, but also on the current prefill and decode workload at the model instance and the scheduling and batching policy of the serving framework. We design a lightweight latency estimator that simulates autoregressive token batch processing in the serving framework and estimates the time-to-first-token (TTFT) of queries. We incorporate this latency estimator into a latency-aware router that jointly optimizes latency, accuracy, and cost when assigning queries to model instances. Our experimental results indicate that this joint optimization yields up to 40% improvement in accuracy--cost utility while maintaining the same latencies as standard load-balancing approaches."
+    },
+    {
+      "arxiv_id": "2606.07587",
+      "cited_title": "The Routing Plateau: Understanding and Breaking the Accuracy Limits of LLM Routers",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "The Routing Plateau: Understanding the Accuracy Limits of LLM Routers",
+      "authors": [
+        "Yifan Lu",
+        "Qiyue Zhang",
+        "Shenrun Zhang",
+        "Zhibo Yu"
+      ],
+      "date": "2026-05-27",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Dimostra i limiti intrinseci dei router basati su embeddings statici e indica come superare il plateau tramite dataset più ampi, encoder più forti e fine-tuning end-to-end",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "LLM routing has become a popular approach to improve the cost-quality trade-off of LLM services by adaptively selecting a model for each query. Recent work has explored a broad range of routing methods, including clustering-based routers, learned classifiers, pairwise ranking, and confidence-based approaches. Our extensive study of 21 routing methods across five benchmarks reveals a consistent phenomenon that we call the routing plateau (Fig. 1): many methods, including kNN, achieve very similar accuracy and converge to a narrow performance range that remains far below the oracle router. Our analysis supports a correctness-prediction bottleneck hypothesis: current routers primarily learn global-average model performance trends rather than fine-grained, query-specific routing signals. As a result, they collectively fail on queries that require instance-specific routing decisions. Moreover, to understand whether the plateau can be alleviated with a better training setup, we construct a 300K-query benchmark (Nine-by-300k). More data, larger encoders, and end-to-end fine-tuning improve eight routers by 1.24 pp on average, but leave the plateau largely intact. These findings suggest that further progress may require inputs beyond the query itself, such as partial output trajectories that reveal how models attempt the task."
+    },
+    {
+      "arxiv_id": "2606.19376",
+      "cited_title": "SLARouter: Cost-Optimal LLM Routing with Limited User Feedback under User Satisfaction Guarantees",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Cost-Optimal LLM Routing with Limited User Feedback under User Satisfaction Guarantees",
+      "authors": [
+        "Herbert Woisetschl\\\"ager",
+        "Arastun Mammadli",
+        "Ryan Zhang",
+        "Shiqiang Wang"
+      ],
+      "date": "2026-06-12",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Riduce i costi operativi fino a 2,2 volte rispetto ai baseline esistenti senza richiedere tuning per specifico benchmark",
+      "numbers_claimed": [
+        "2,2 volte"
+      ],
+      "numbers_in_abstract": [
+        "2,2 volte"
+      ],
+      "abstract": "Inference costs for large language model (LLM) applications are rapidly growing, driven by surging demand and rising infrastructure cost. Users expect high-quality responses, and in commercial settings this is formally codified in Service Level Agreements (SLAs), creating a fundamental tension between cost and quality. Recent progress on cost-aware LLM request routing has shown potential to resolve this tension, but existing approaches rely on complete feedback signals, offline training, extensive per-workload tuning, and most lack SLA guarantees or inference-time adaptivity. We introduce SLARouter, an online routing algorithm that learns a cost-optimal policy from the sparse, one-sided user feedback available in production systems. SLARouter provides theoretical guarantees for both cost optimality and strict SLA compliance. Experiments across a wide range of LLM benchmarks show that SLARouter satisfies SLA constraints without the need for per-benchmark tuning, reducing operating cost by up to 2.2x over existing baselines."
+    },
+    {
+      "arxiv_id": "2606.22902",
+      "cited_title": "Agent-as-a-Router / ACRouter",
+      "status": "VERIFICATO",
+      "title_overlap": 0.67,
+      "real_title": "Agent-as-a-Router: Agentic Model Routing for Coding Tasks",
+      "authors": [
+        "Pengfei Zhou",
+        "Zhiwei Tang",
+        "Yixing Ma",
+        "Jiasheng Tang"
+      ],
+      "date": "2026-06-22",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Ottiene le migliori prestazioni di accuratezza media sia in-distribution (49,98%) sia out-of-distribution (62,50%) per task di programmazione complessi, superando la strategia di scegliere sempre il modello top (Opus-4.6) a costi inferiori",
+      "numbers_claimed": [
+        "4.6",
+        "49,98%",
+        "62,50%"
+      ],
+      "numbers_in_abstract": [],
+      "abstract": "Real-world users typically have access to multiple Large Language Models (LLMs) from different providers, and these LLMs often excel at distinct domains, yet none dominate all. Consequently, routing each task to the most suitable model becomes critical for both performance and cost. Existing routers treat this as a static, one-off classification problem. However, we identify the performance bottleneck for these routers as information deficit: simply augmenting a vanilla LLM router with performance statistics at the task-dimension level yields a 15.3% relative gain, surpassing a heuristic router built on the same dimension-level priors. Motivated by this finding, we propose Agent-as-a-Router, a framework that formalizes routing as a C-A-F loop (Context->Action->Feedback->Context). It closes the information gap by accumulating execution-grounded experience during deployment. We instantiate this framework as ACRouter, composed of an Orchestrator, a Verifier, a Memory module, and introduce CodeRouterBench, an evaluation environment comprising ~10K task instances with verified scores from 8 frontier LLMs, enabling regret-based router comparison on streaming tasks. Experiments show that ACRouter achieves the lowest cumulative regret on in-distribution tasks and generalizes to out-of-distribution agentic-programming tasks, demonstrating that our routing framework actively closes the information gap. Codes and benchmarks are released at https://github.com/LanceZPF/agent-as-a-router."
+    },
+    {
+      "arxiv_id": "2608.06867",
+      "cited_title": "LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers",
+      "authors": [
+        "Tao Feng",
+        "Fangxu Yu",
+        "Haozhen Zhang",
+        "Zhongjie Dai"
+      ],
+      "date": "2026-08-07",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Dimostra che i router appresi superano del 14,6% il miglior modello fisso singolo e che i router trascurano la complessità multi-turn a favore di architetture leggere quando i vincoli di budget si stringono",
+      "numbers_claimed": [
+        "14,6%"
+      ],
+      "numbers_in_abstract": [
+        "14,6%"
+      ],
+      "abstract": "No single large language model (LLM) is optimal across all queries and budget constraints, making model routing essential for cost-effective deployment. Existing routers adopt diverse formulations and implementations, making fair comparison and extension difficult. We present a unified formulation of LLM routing as a sequential decision process characterized by five components: context encoders, model encoders, scoring functions, decision rules, and learning signals, covering single-turn, multi-turn, and personalized routing. Based on this formulation, we develop an automated pipeline for constructing routing supervision and evaluating routers jointly on response quality and inference cost. The resulting benchmark, xRouteBench, spans generic LLM, memory-augmented, vision, time-series, and personalized routing tasks. We further introduce LLMRouter, an open-source modular infrastructure with more than 16 representative routers. Our empirical study shows that learned routers outperform the strongest fixed-model baseline by 14.6% relatively, lightweight routers become more competitive under tight cost constraints, and user-conditioned routing consistently improves personalization."
+    },
+    {
+      "arxiv_id": "2607.13080",
+      "cited_title": "Inference Economics of Enterprise Coding Agents: Cloud vs. On-Premise LLMs",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Inference Economics of Enterprise Coding Agents: A Case Study of Cloud vs. On-Premise LLMs",
+      "authors": [
+        "Sheng-Wei Peng",
+        "Yi-Hsun Lin",
+        "Yi-Pei Lee"
+      ],
+      "date": "2026-07-13",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Il prompt caching (hit rate 99,3%) abbassa il costo effettivo API dell'88,6% a $0,57/M token, ribaltando il vantaggio del costo marginale locale ($2,83/M token ammortizzati in slice condivisa)",
+      "numbers_claimed": [
+        "0,57",
+        "2,83",
+        "88,6%",
+        "99,3%"
+      ],
+      "numbers_in_abstract": [
+        "0,57",
+        "2,83",
+        "88,6%",
+        "99,3%"
+      ],
+      "abstract": "Autonomous coding agents force engineering organizations to choose between API-based frontier models -- strong reasoning at high token cost -- and on-premise quantized open-weights models, which promise low-marginal-cost scaling and data sovereignty at some loss of reasoning fidelity. We study this trade-off through a single-developer, non-randomized longitudinal case study over two contiguous 28-day periods on a production monorepo: an API-based Claude Opus 4.7/4.8 configuration using Claude Code versus an on-premise GLM-5.1/5.2 configuration using Opencode, quantized to NVFP4, on NVIDIA Blackwell hardware. Analyzing LLM telemetry and Git history, we find that prompt caching (99.3% hit rate) cuts realized API cost by 88.6% to an effective \\$0.57 per million tokens -- below even the \\$2.83 amortized unit cost of the shared on-premise slice (a utilization-dependent inversion; total realized spend and total cost of ownership (TCO) are the robust quantities). At comparable gross code churn, the local configuration was associated with a far higher defect-repair burden: a Fix Commit Ratio (FCR) of 74.9% versus 45.9%, with the odds of a commit being a repair 2.6 to 4.9 times higher within every difficulty tier (Mantel-Haenszel OR = 3.61). Under Taiwan-market parameters and a symmetric labor model, on-premise deployment nonetheless saves 40.1% of true TCO under shared GPU allocation, whereas dedicated reservation costs 43.8% more than the cached API. Under shared allocation, the genuine penalty is not monetary but a measurable developer-experience burden -- timestamp indicators show more work trapped in debugging spirals and a slower commit cadence -- and an offline replay shows hybrid routing gateways trade defect rate for infrastructure savings along a cost-quality frontier rather than dominate the pure-API baseline."
+    },
+    {
+      "arxiv_id": "2606.11690",
+      "cited_title": "Beyond Per-Token Pricing: A Concurrency-Aware Methodology for LLM Infrastructure Cost Estimation",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Beyond Per-Token Pricing: A Concurrency-Aware Methodology for LLM Infrastructure Cost Estimation",
+      "authors": [
+        "Chitral Patil"
+      ],
+      "date": "2026-06-10",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Il costo effettivo per milione di token su un server H100 oscilla da $0,21 a $15,25 a seconda del carico; la penalità per sottoutilizzo varia da 2,5x a 24x per bassi livelli di traffico (1-10 rps), fino a 36,3x da fermo",
+      "numbers_claimed": [
+        "0,21",
+        "1",
+        "10",
+        "100",
+        "15,25",
+        "2,5x",
+        "24x",
+        "36,3x"
+      ],
+      "numbers_in_abstract": [
+        "0,21",
+        "1",
+        "10",
+        "100",
+        "15,25",
+        "2,5x",
+        "24x",
+        "36,3x"
+      ],
+      "abstract": "Every public LLM cost calculator we surveyed treats GPU utilization as a fixed input -- entered by the user, baked in as a preset, or silently assumed at 100% -- never measured against the operator's actual load. We show that this assumption is the dominant source of error: on identical H100 hardware, effective cost spans \\$0.21 to \\$15.25 per million output tokens, an underutilization penalty of 2.5-24x across low-to-moderate enterprise loads (1-10 rps) and up to 36.3x near idle -- driven by one operator-controlled variable, offered request rate lambda, which sets in-flight concurrency via Little's Law and which no open-source calculator exposes. Because calculators take utilization as a user-supplied input, any utilization-naive estimate understates true cost by exactly 1/U, systematically mispricing self-hosting -- most severely over-selling it for low-traffic workloads. We propose a measurement methodology that parameterizes the relationship as C_eff = f(H, M, Q, lambda, L), validate it with 42 benchmarks across dense, ultra-sparse MoE, and sparse MoE models, and release vllm-cost-meter, an open-source cost meter that attaches to a live vLLM server and reports real \\$/M-tokens against the operator's own traffic. We further show that FP8 quantization benefits the MoE architectures we tested roughly 2.2-2.4x more than the dense model (+69 to +74% vs. +31% peak throughput; n=3, broader validation needed), and our data are consistent with active parameter count, not total model size, being a primary predictor of saturation economics. To rule out single-hardware confounding we repeat the core sweep on A100 80GB PCIe (56 runs): the load-driven spread reproduces at 7.0-11.4x, the active-parameters ordering survives at FP8, and the dense-FP8 advantage inverts on silicon without native FP8 tensor cores -- a hardware-conditional caveat the framework already accommodates."
+    },
+    {
+      "arxiv_id": "2509.18101",
+      "cited_title": "A Cost-Benefit Analysis of On-Premise LLM Deployment: Breaking Even with Commercial LLM Services",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "A Cost-Benefit Analysis of On-Premise Large Language Model Deployment: Breaking Even with Commercial LLM Services",
+      "authors": [
+        "Guanzhong Pan",
+        "Vishal Chodnekar",
+        "Abinas Roy",
+        "Haibo Wang"
+      ],
+      "date": "2025-08-30",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "Large language models (LLMs) are becoming increasingly widespread. Organizations that want to use AI for productivity now face an important decision. They can subscribe to commercial LLM services or deploy models on their own infrastructure. Cloud services from providers such as OpenAI, Anthropic, and Google are attractive because they provide easy access to state-of-the-art models and are easy to scale. However, concerns about data privacy, the difficulty of switching service providers, and long-term operating costs have driven interest in local deployment of open-source models. This paper presents a cost-benefit analysis framework to help organizations determine when on-premise LLM deployment becomes economically viable compared to commercial subscription services. We consider the hardware requirements, operational expenses, and performance benchmarks of the latest open-source models, including Qwen, Llama, Mistral, and etc. Then we compare the total cost of deploying these models locally with the major cloud providers subscription fee. Our findings provide an estimated breakeven point based on usage levels and performance needs. These results give organizations a practical framework for planning their LLM strategies."
+    },
+    {
+      "arxiv_id": "2601.09527",
+      "cited_title": "Private LLM Inference on Consumer Blackwell GPUs",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Private LLM Inference on Consumer Blackwell GPUs: A Practical Guide for Cost-Effective Local Deployment in SMEs",
+      "authors": [
+        "Jonathan Knoop",
+        "Hendrik Holtmann"
+      ],
+      "date": "2026-01-14",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Costi operativi elettrici compresi tra $0,001 e $0,04 per milione di token (40-200x inferiori rispetto alle API cloud budget), con rientro dell'investimento hardware in meno di 4 mesi a volumi di 30M token/giorno",
+      "numbers_claimed": [
+        "0,001",
+        "0,04",
+        "200x",
+        "30",
+        "4",
+        "40"
+      ],
+      "numbers_in_abstract": [
+        "0,001",
+        "0,04",
+        "200x",
+        "30",
+        "4",
+        "40"
+      ],
+      "abstract": "SMEs increasingly seek alternatives to cloud LLM APIs, which raise data privacy concerns. Dedicated cloud GPU instances offer improved privacy but with limited guarantees and ongoing costs, while professional on-premise hardware (A100, H100) remains prohibitively expensive. We present a systematic evaluation of NVIDIA's Blackwell consumer GPUs (RTX 5060 Ti, 5070 Ti, 5090) for production LLM inference, benchmarking four open-weight models (Qwen3-8B, Gemma3-12B, Gemma3-27B, GPT-OSS-20B) across 79 configurations spanning quantization formats (BF16, W4A16, NVFP4, MXFP4), context lengths (8k-64k), and three workloads: RAG, multi-LoRA agentic serving, and high-concurrency APIs. The RTX 5090 delivers 3.5-4.6x higher throughput than the 5060 Ti with 21x lower latency for RAG, but budget GPUs achieve the highest throughput-per-dollar for API workloads with sub-second latency. NVFP4 quantization provides 1.6x throughput over BF16 with 41% energy reduction and only 2-4% quality loss. Self-hosted inference costs $0.001-0.04 per million tokens (electricity only), which is 40-200x cheaper than budget-tier cloud APIs, with hardware breaking even in under four months at moderate volume (30M tokens/day). Our results show that consumer GPUs can reliably replace cloud inference for most SME workloads, except latency-critical long-context RAG, where high-end GPUs remain essential. We provide deployment guidance and release all benchmark data for reproducible SME-scale deployments."
+    },
+    {
+      "arxiv_id": "2501.01818",
+      "cited_title": "Rerouting LLM Routers (Confounder Gadgets)",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Rerouting LLM Routers",
+      "authors": [
+        "Avital Shafran",
+        "Roei Schuster",
+        "Thomas Ristenpart",
+        "Vitaly Shmatikov"
+      ],
+      "date": "2025-01-03",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "L'attacco ha successo sia in contesti white-box sia black-box su router commerciali e open-source, e i filtri basati sulla perplessità del testo non costituiscono una difesa efficace",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "LLM routers aim to balance quality and cost of generation by classifying queries and routing them to a cheaper or more expensive LLM depending on their complexity. Routers represent one type of what we call LLM control planes: systems that orchestrate use of one or more LLMs. In this paper, we investigate routers' adversarial robustness. We first define LLM control plane integrity, i.e., robustness of LLM orchestration to adversarial inputs, as a distinct problem in AI safety. Next, we demonstrate that an adversary can generate query-independent token sequences we call ``confounder gadgets'' that, when added to any query, cause LLM routers to send the query to a strong LLM. Our quantitative evaluation shows that this attack is successful both in white-box and black-box settings against a variety of open-source and commercial routers, and that confounding queries do not affect the quality of LLM responses. Finally, we demonstrate that gadgets can be effective while maintaining low perplexity, thus perplexity-based filtering is not an effective defense. We finish by investigating alternative defenses."
+    },
+    {
+      "arxiv_id": "2607.15899",
+      "cited_title": "ContinuityBench: Stateful Failover in Multi-Provider LLM Routing",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "ContinuityBench: A Benchmark and Systems Study of Stateful Failover in Multi-Provider LLM Routing",
+      "authors": [
+        "Vishal Pandey",
+        "Gopal Singh"
+      ],
+      "date": "2026-07-17",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Il failover stateful garantisce un Continuity Preservation Rate del 99,20%, a fronte del ~0% ottenuto dai failover di tipo stateless",
+      "numbers_claimed": [
+        "0%",
+        "99,20%"
+      ],
+      "numbers_in_abstract": [
+        "0%",
+        "99,20%"
+      ],
+      "abstract": "In production large language model (LLM) deployments, high API availability guarantees do not equate to conversational continuity. When a primary provider experiences an outage or strict rate-limiting, naive stateless failover mechanisms successfully maintain uptime but silently discard conversation history, severely disrupting the user experience. To rigorously quantify and resolve this failure mode, we introduce two novel metrics: Continuity Preservation Rate (CPR) and Continuity Latency Overhead (CLO). We propose a stateful, multi-provider proxy architecture utilizing a History-Forwarding strategy to seamlessly reconstruct conversational state across heterogeneous LLM endpoints during failover events. Furthermore, we release continuity-bench, https://github.com/Vishal-sys-code/continuity-bench, an open evaluation harness designed to stress-test context preservation under high-concurrency provider failure conditions. Our empirical evaluation ($N=750$ failover events) demonstrates that our stateful proxy achieves a 99.20\\% CPR [95\\% CI: 98.27\\%, 99.63\\%], cleanly transferring deep conversational context to fallback providers, compared to a near-0\\% preservation rate for standard stateless architectures. Finally, we characterize failover latency distributions, identifying the critical necessity of asynchronous exponential backoff with jitter to prevent cascading retry storms against strict-limit fallback APIs. Our results provide a principled foundation for building robust, state-preserving multi-model inference systems."
+    },
+    {
+      "arxiv_id": "2605.02821",
+      "cited_title": "When Is the Same Model Not the Same Service? Hosted Open-Weight LLM APIs",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "When Is the Same Model Not the Same Service? A Measurement Study of Hosted Open-Weight LLM APIs",
+      "authors": [
+        "Haorui Li",
+        "Zhenghui He",
+        "Xuanzi Liu",
+        "Yang Xu"
+      ],
+      "date": "2026-05-04",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Un routing dinamico orientato ai provider per lo stesso modello (es. Qwen) permette di ridurre i costi fino al 37,8% mitigando code di latenza ed errori di disponibilità",
+      "numbers_claimed": [
+        "37,8%"
+      ],
+      "numbers_in_abstract": [
+        "37,8%"
+      ],
+      "abstract": "Open-weight large language models (LLMs) are usually named as model artifacts, but production users often consume them as hosted API services. This paper argues that the operational unit is a service object: a provider-specific, time-varying endpoint defined by model variant, protocol behavior, context capacity, listed price, latency and throughput distribution, reliability, and task feasibility. Using sampled request logs, provider metadata, compatibility probes, pricing snapshots, and continuous latency measurements collected by AI Ping during Q4 2025, we study how this service layer changes the meaning of \"the same model.\" Three empirical patterns emerge. First, observed demand is concentrated but persistent across versions: in the displayed family aggregate, the largest family carries 32.0% of relative demand and the top five carry 87.4%, with a Gini coefficient of 0.693, while older variants remain active after newer releases. Second, supply and use separate: provider listing breadth does not imply realized adoption, and listed prices are more anchored than latency, throughput, context length, protocol support, and error semantics. Third, task mix matters: applications induce different token-length regimes, so provider choice is a constrained decision over provider-model-task-time tuples rather than a lookup by model name. In two representative counterfactuals under observed feasibility constraints, routing lowers Qwen3-32B cost by 37.8% and raises DeepSeek-V3.2 average throughput by about 90% relative to direct official access. The results support a measurement view of hosted open-weight LLMs as heterogeneous services, not static catalog entries. We open-source the measurement methodology and reproduction artifacts at https://github.com/haoruilee/llm_api_measurement_study to support result reproduction."
+    },
+    {
+      "arxiv_id": "2607.20860",
+      "cited_title": "IRIS: Information-Rate Inspection from Strings",
+      "status": "VERIFICATO",
+      "title_overlap": 0.17,
+      "real_title": "Which Model Is Actually Serving You? IRIS: Budgeted Black-Box Auditing of Model Substitution and Routing Dilution in LLM Gateways",
+      "authors": [
+        "Yuewei Zhang",
+        "Zhi-Hai Zhang",
+        "Hanzhang Qin"
+      ],
+      "date": "2026-07-23",
+      "source": "best_paper",
+      "review_note": "titolo abbreviato: il paper è 'Which Model Is Actually Serving You? IRIS: …'",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "Commercial LLM gateways mediate access to hosted models, but the served backend may not match the advertised one: it may substitute a cheaper model on every request or route only a fraction $\\epsilon$ of requests to it. Prior black-box auditors often need a privileged signal (log-probabilities, token ranks, or reference samples) or a target-specific probe, fix the query budget in advance, and return a yes/no verdict. We present $\\mathrm{IRIS}$, an audit that needs only the returned text: it asks endpoints to generate random numbers or strings, fingerprints the backend, and is the first to combine, in one text-only audit, detection of whole-stream substitution and fractional dilution, attribution of the served backend, routing-fraction ($\\epsilon$) estimation, and a query budget it sizes itself. A cheap pilot fits the exponential query-error decay and freezes that budget before any suspect query is issued. On an intra-family Qwen3 ladder $\\mathrm{IRIS}$ verifies the backend at $0.99$ AUROC and sharpens attribution as queries accumulate; across a commercial OpenRouter library it catches $\\epsilon{=}0.3$ dilution on margin-qualified pairs at $0.85$ mean power ($0.017$ false-positive rate) and recovers $\\epsilon$ to within $0.04$ for enrolled diluents; and a live cross-provider audit flags $14$ of $15$ same-model provider pairs by genuine quantization and kernel deviations, corroborated on third-party MET traces. Against comparable black-box auditors, $\\mathrm{IRIS}$ matches or beats detection on shared tasks, and adaptive allocation lifts the matched-budget target-hit rate from $73$% to $87$%. Further experiments cover adversarial gateways, knob identifiability, unseen diluents, and false-positive control."
+    },
+    {
+      "arxiv_id": "2310.05736",
+      "cited_title": "LLMLingua: Compressing Prompts for Accelerated Inference",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models",
+      "authors": [
+        "Huiqiang Jiang",
+        "Qianhui Wu",
+        "Chin-Yew Lin",
+        "Yuqing Yang"
+      ],
+      "date": "2023-10-09",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Ottiene tassi di compressione fino a 20x con perdite irrilevanti di accuratezza su benchmark di reasoning",
+      "numbers_claimed": [
+        "20x"
+      ],
+      "numbers_in_abstract": [
+        "20x"
+      ],
+      "abstract": "Large language models (LLMs) have been applied in various applications due to their astonishing capabilities. With advancements in technologies such as chain-of-thought (CoT) prompting and in-context learning (ICL), the prompts fed to LLMs are becoming increasingly lengthy, even exceeding tens of thousands of tokens. To accelerate model inference and reduce cost, this paper presents LLMLingua, a coarse-to-fine prompt compression method that involves a budget controller to maintain semantic integrity under high compression ratios, a token-level iterative compression algorithm to better model the interdependence between compressed contents, and an instruction tuning based method for distribution alignment between language models. We conduct experiments and analysis over four datasets from different scenarios, i.e., GSM8K, BBH, ShareGPT, and Arxiv-March23; showing that the proposed approach yields state-of-the-art performance and allows for up to 20x compression with little performance loss. Our code is available at https://aka.ms/LLMLingua."
+    },
+    {
+      "arxiv_id": "2607.15516",
+      "cited_title": "Cache-Aware Prompt Compression (CAPC)",
+      "status": "VERIFICATO",
+      "title_overlap": 0.8,
+      "real_title": "Cache-Aware Prompt Compression:A Two-Tier Cost Model for LLM API Caching",
+      "authors": [
+        "Yan Song"
+      ],
+      "date": "2026-07-17",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Risulta più economico del 90% rispetto all'invio non compresso e del 49% rispetto all'uso del solo caching su LongBench-v2",
+      "numbers_claimed": [
+        "2",
+        "49%",
+        "90%"
+      ],
+      "numbers_in_abstract": [
+        "2",
+        "49%",
+        "90%"
+      ],
+      "abstract": "Production LLM deployments combine two cost-reduction primitives: prompt caching (a discounted rate for re-used token prefixes) and prompt compression (fewer tokens sent). The compression literature has standardized on query-aware methods that produce a different compressed prefix per query, mechanically invalidating the prefix-strict cache on every call. We characterize this cost empirically on Anthropic's Sonnet 4.6 API and find caching is far from the rho=1.0 ideal the literature assumes: Sonnet's cache has a two-tier architecture with a sharp threshold near 3,500 tokens, below which the hit rate plateaus at rho~0.83 across 30-call sessions. Our cost model predicts, and experiments confirm, that under realistic rho, query-aware compression beats naive caching at high compression ratios (r>=6). We propose Cache-Aware Prompt Compression (CAPC), pairing query-agnostic compression with explicit cache_control plus a tier-preserving ratio bound that prevents over-compression from pushing the cached prefix into the hot tier. CAPC is the cheapest strategy in 16/16 configurations on LongBench-v2, with mean savings of 49% over cache-only, 64% over query-aware compression, and 90% over vanilla, at quality within 0.05 of the uncompressed baseline. We validate CAPC on three production workloads: an enterprise tool-using assistant with a 94k-token schema prefix (51.7% cost reduction at r=3); a graphify knowledge-graph RAG pipeline across two codebases (9.3x vs cache-all on FastAPI, 2.4x on httpx); and the public tau-bench retail benchmark (50 tasks), where CAPC is the cheapest of four strategies with reward exactly equal to vanilla (both 36/50, p=1.00) while query-aware compression is the most expensive at +40.1% over vanilla -- the first production confirmation of the crossover model's negative-ROI prediction on a public benchmark."
+    },
+    {
+      "arxiv_id": "2407.16833",
+      "cited_title": "Self-Route: RAG or Long-Context LLMs?",
+      "status": "VERIFICATO",
+      "title_overlap": 0.5,
+      "real_title": "Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach",
+      "authors": [
+        "Zhuowan Li",
+        "Cheng Li",
+        "Mingyang Zhang",
+        "Qiaozhu Mei"
+      ],
+      "date": "2024-07-23",
+      "source": "best_paper",
+      "review_note": "titolo abbreviato: Self-Route è il metodo proposto nel paper",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "Retrieval Augmented Generation (RAG) has been a powerful tool for Large Language Models (LLMs) to efficiently process overly lengthy contexts. However, recent LLMs like Gemini-1.5 and GPT-4 show exceptional capabilities to understand long contexts directly. We conduct a comprehensive comparison between RAG and long-context (LC) LLMs, aiming to leverage the strengths of both. We benchmark RAG and LC across various public datasets using three latest LLMs. Results reveal that when resourced sufficiently, LC consistently outperforms RAG in terms of average performance. However, RAG's significantly lower cost remains a distinct advantage. Based on this observation, we propose Self-Route, a simple yet effective method that routes queries to RAG or LC based on model self-reflection. Self-Route significantly reduces the computation cost while maintaining a comparable performance to LC. Our findings provide a guideline for long-context applications of LLMs using RAG and LC."
+    },
+    {
+      "arxiv_id": "2608.08654",
+      "cited_title": "The Scaffolding Matters More Than the Interface: MCP vs CLI",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "The Scaffolding Matters More Than the Interface: A Controlled Comparison of MCP and CLI Tool Use Across Seven Agent Scaffoldings, Five Language Models, and One Software Task",
+      "authors": [
+        "Marc Alier Forment",
+        "Mar\\'ia Jos\\'e Casa\\~n Guerrero",
+        "Francisco Jos\\'e Garc\\'ia-Pe\\~nalvo and Juanan Pereira"
+      ],
+      "date": "2026-08-09",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Dimostra che le definizioni esaustive inviate via MCP aumentano il consumo di token rendendo l'esecuzione da 5x a 28x più costosa rispetto a scaffolding ottimizzati o ad accesso su richiesta",
+      "numbers_claimed": [
+        "28x",
+        "5x"
+      ],
+      "numbers_in_abstract": [
+        "28x",
+        "5x"
+      ],
+      "abstract": "How much an AI coding agent costs to run can depend more on the agent scaffolding that drives it than on the interface through which it reaches its tools. We set out to measure the cost of tool use over the Model Context Protocol (MCP) against tool use over an ordinary command-line interface (CLI), a difference on which published estimates disagree by more than an order of magnitude while resting on practitioner reports that cannot be reproduced. We ran one fixed software task -- six operations against a private online git repository -- across seven agent scaffoldings and five language models, and we verified completion by inspecting the repository state rather than trusting the agent's self-report. The dominant effect was the scaffolding. Two of the seven ship no MCP support at all; they completed every run using only the CLI, which shows that MCP is unnecessary for this class of work, and they were 5.0x to 28x cheaper than the five scaffoldings that do support MCP, comparing CLI runs alone with no MCP server attached anywhere. The effect was largest for a small 27-billion-parameter model running locally, whose cost varied 139x across scaffoldings while it completed the task under all of them. The comparison we set out to make proved unstable: thirteen strictly paired MCP-to-CLI ratios span 0.43x to 29x, with outliers on both sides. The two interfaces separate on the cost of failure, where 12.9 per cent of the money spent on MCP runs bought no completed work against 2.2 per cent on CLI runs, but not on its frequency: failures were equally common in both, in the original runs and in their repetitions alike. Agents frequently ignored the interface they were assigned, so comparisons that do not verify actual behaviour measure an unknown mixture. The harness, the task, the verification and the complete dataset are released as open source."
+    },
+    {
+      "arxiv_id": "2604.22750",
+      "cited_title": "How Do AI Agents Spend Your Money? Token Consumption in Agentic Coding Tasks",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks",
+      "authors": [
+        "Longju Bai",
+        "Zhemin Huang",
+        "Xingyao Wang",
+        "Jiao Sun"
+      ],
+      "date": "2026-04-24",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "I task agentici consumano fino a 1000 volte più token rispetto alle normali chat di codice (con una netta dominanza dei token di input) e presentano varianze di costo fino a 30x sullo stesso identico task",
+      "numbers_claimed": [
+        "1000 volte",
+        "30x"
+      ],
+      "numbers_in_abstract": [
+        "1000 volte",
+        "30x"
+      ],
+      "abstract": "The wide adoption of AI agents in complex human workflows is driving rapid growth in LLM token consumption. When agents are deployed on tasks that require a significant amount of tokens, three questions naturally arise: (1) Where do AI agents spend the tokens? (2) Which models are more token-efficient? and (3) Can agents predict their token usage before task execution? In this paper, we present the first systematic study of token consumption patterns in agentic coding tasks. We analyze trajectories from eight frontier LLMs on SWE-bench Verified and evaluate models' ability to predict their own token costs before task execution. We find that: (1) agentic tasks are uniquely expensive, consuming 1000x more tokens than code reasoning and code chat, with input tokens rather than output tokens driving the overall cost; (2) token usage is highly variable and inherently stochastic: runs on the same task can differ by up to 30x in total tokens, and higher token usage does not translate into higher accuracy; instead, accuracy often peaks at intermediate cost and saturates at higher costs; (3) models vary substantially in token efficiency: on the same tasks, Kimi-K2 and Claude-Sonnet-4.5, on average, consume over 1.5 million more tokens than GPT-5; (4) task difficulty rated by human experts only weakly aligns with actual token costs, revealing a fundamental gap between human-perceived complexity and the computational effort agents actually expend; and (5) frontier models fail to accurately predict their own token usage (with weak-to-moderate correlations, up to 0.39) and systematically underestimate real token costs. Our study offers new insights into the economics of AI agents and can inspire future research in this direction."
+    },
+    {
+      "arxiv_id": "2609.01572",
+      "cited_title": "From Production Traffic to Post-Training: A Self-Hosted LLM for the Corporate Request Mix",
+      "status": "VERIFICATO",
+      "title_overlap": 0.92,
+      "real_title": "From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix",
+      "authors": [
+        "Olga Tsymboi",
+        "Dmitrii Stoianov",
+        "Ramil Latypov",
+        "Danil Taranets"
+      ],
+      "date": "2026-09-01",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Il modello locale distillato assorbe il 50% del traffico aziendale (116M richieste/mese) superando un baseline 7 volte più grande nell'Arena interna",
+      "numbers_claimed": [
+        "116",
+        "50%",
+        "7 volte"
+      ],
+      "numbers_in_abstract": [
+        "116",
+        "50%",
+        "7 volte"
+      ],
+      "abstract": "Data-residency constraints force enterprises to self-host LLMs, but continuous adoption of newer models without decommissioning their predecessors expands the serving fleet, fragmenting a finite GPU pool. We consolidate traffic from over 200 internal applications onto a single model by closing quality gaps identified through production error analysis along three axes: instruction following, function-calling, and internal task distribution. Quality is tracked by offline benchmarks stratified to production traffic and scored by deterministic verifiers or calibrated LLM judges. Rather than optimising all objectives jointly, which introduces cross-domain reward interference, we train a separate GRPO expert per axis and merge them via two-stage SLERP. Each expert's reward exposes a distinct failure mode, namely semantic collapse, over-calling, and verbosity hacking, each requiring a domain-specific fix. In non-reasoning mode the recipe surpasses a ${\\sim}7\\times$ larger by total parameters baseline on the in-house Arena with 69.6 to 65.8, instruction following with 0.85 to 0.83, and function-calling with 0.79 to 0.77, while lifting general dialogue benchmarks. The model absorbs 50% of platform traffic, 116M requests per month, at a fraction of the serving cost."
+    },
+    {
+      "arxiv_id": "2605.22057",
+      "cited_title": "FlyRoute: Self-Evolving Agent Profiling via Data Flywheel for Adaptive Task Routing",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "FlyRoute: Self-Evolving Agent Profiling via Data Flywheel for Adaptive Task Routing",
+      "authors": [
+        "Rongjun Li",
+        "Ziyu Zhou",
+        "Yihang Wu"
+      ],
+      "date": "2026-05-21",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "Porta l'accuratezza del router dal 72,57% iniziale all'89,83% dopo lo streaming del traffico di produzione (+17,26 punti percentuali)",
+      "numbers_claimed": [
+        "17,26",
+        "72,57%",
+        "89,83%"
+      ],
+      "numbers_in_abstract": [
+        "17,26",
+        "72,57%",
+        "89,83%"
+      ],
+      "abstract": "Enterprise routers assign queries to expert agents, yet deployed profiles stay static while agents evolve (prompts, tools, models), and developers rarely keep descriptions or exemplars current. We present FlyRoute, a self-evolving profiling framework that grows capability evidence from real traffic: dispatch candidates, quality-gate successful pairs into each agent's success store, periodically distill evidence into learned capability descriptions, and inject those descriptions together with BM25-retrieved successes into an LLM router. To make this flywheel data-efficient, FlyRoute introduces a targeted exploration policy that combines profile uncertainty, BM25 relevance, and lexical novelty, prioritizing under-profiled agents only for plausible queries and avoiding redundant evidence collection. In experiments on our proprietary enterprise developer-support dataset of real routed queries, FlyRoute improves a same-backbone zero-shot LLM router from 72.57% to 78.04% with only five seed queries per agent, showing that profile retrieval already strengthens cold-start routing. After streaming 7,211 labeled training queries through the flywheel, accuracy rises to 89.83% (+17.26pp over zero-shot; +11.79pp over cold start), with consistent gains across four expert domains under standard routing accuracy on single-gold test queries."
+    },
+    {
+      "arxiv_id": "2305.02301",
+      "cited_title": "Distilling Step-by-Step! Outperforming Larger Language Models with Less Training Data and Smaller Model Sizes",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Distilling Step-by-Step! Outperforming Larger Language Models with Less Training Data and Smaller Model Sizes",
+      "authors": [
+        "Cheng-Yu Hsieh",
+        "Chun-Liang Li",
+        "Chih-Kuan Yeh",
+        "Hootan Nakhost"
+      ],
+      "date": "2023-05-03",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "Deploying large language models (LLMs) is challenging because they are memory inefficient and compute-intensive for practical applications. In reaction, researchers train smaller task-specific models by either finetuning with human labels or distilling using LLM-generated labels. However, finetuning and distillation require large amounts of training data to achieve comparable performance to LLMs. We introduce Distilling step-by-step, a new mechanism that (a) trains smaller models that outperform LLMs, and (b) achieves so by leveraging less training data needed by finetuning or distillation. Our method extracts LLM rationales as additional supervision for training small models within a multi-task framework. We present three findings across 4 NLP benchmarks: First, compared to both finetuning and distillation, our mechanism achieves better performance with much fewer labeled/unlabeled training examples. Second, compared to few-shot prompted LLMs, we achieve better performance using substantially smaller model sizes. Third, we reduce both the model size and the amount of data required to outperform LLMs; our finetuned 770M T5 model outperforms the few-shot prompted 540B PaLM model using only 80% of available data on a benchmark, whereas standard finetuning the same T5 model struggles to match even by using 100% of the dataset. We release the code at: https://github.com/google-research/distilling-step-by-step ."
+    },
+    {
+      "arxiv_id": "2309.06180",
+      "cited_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "authors": [
+        "Woosuk Kwon",
+        "Zhuohan Li",
+        "Siyuan Zhuang",
+        "Ying Sheng"
+      ],
+      "date": "2023-09-12",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "High throughput serving of large language models (LLMs) requires batching sufficiently many requests at a time. However, existing systems struggle because the key-value cache (KV cache) memory for each request is huge and grows and shrinks dynamically. When managed inefficiently, this memory can be significantly wasted by fragmentation and redundant duplication, limiting the batch size. To address this problem, we propose PagedAttention, an attention algorithm inspired by the classical virtual memory and paging techniques in operating systems. On top of it, we build vLLM, an LLM serving system that achieves (1) near-zero waste in KV cache memory and (2) flexible sharing of KV cache within and across requests to further reduce memory usage. Our evaluations show that vLLM improves the throughput of popular LLMs by 2-4$\\times$ with the same level of latency compared to the state-of-the-art systems, such as FasterTransformer and Orca. The improvement is more pronounced with longer sequences, larger models, and more complex decoding algorithms. vLLM's source code is publicly available at https://github.com/vllm-project/vllm"
+    },
+    {
+      "arxiv_id": "2609.16818",
+      "cited_title": "InceptionRAG: Stealthy Poisoning Attack Against Retrieval-Augmented Generation",
+      "status": "VERIFICATO",
+      "title_overlap": 1.0,
+      "real_title": "InceptionRAG: Stealthy Poisoning Attack Against Retrieval-Augmented Generation",
+      "authors": [
+        "Jiachang Zhang",
+        "Min Chen",
+        "Xiao Ren",
+        "Zhenyong Zhang"
+      ],
+      "date": "2026-09-15",
+      "source": "best_paper",
+      "review_note": "",
+      "claims": "",
+      "numbers_claimed": [],
+      "numbers_in_abstract": [],
+      "abstract": "Retrieval-augmented generation (RAG) systems enhance large language models (LLMs) with external knowledge but have been demonstrated to be vulnerable to corpus poisoning. Existing poisoning attacks against RAG largely focus on single-point explicit injection, where the malicious payload is fully encapsulated within a single document. Consequently, recent mitigation mechanisms have evolved to identify and diminish these threats effectively. In this paper, we first verify that existing mitigation mechanisms are insufficient for a new class of threats: indirect logic induction. Motivated by this observation, we introduce InceptionRAG, a stealthy attack mechanism that subverts the standard attack paradigm. Instead of injecting explicit malicious payloads, InceptionRAG fragments it into a chain of dormant passages. These passages appear harmless and can bypass existing mitigation mechanisms when examined separately. However, when retrieved together, they trigger LLMs to self-deduce target misinformation via multi-hop reasoning. To further improve the applicability of InceptionRAG in black-box settings, we propose zeroth-order suffix optimization (ZOSO) to automate the generation of authoritative suffixes. Extensive evaluations across three datasets and three LLMs demonstrate that InceptionRAG achieves an attack success rate exceeding 80% even under rigorous adversarial constraints. In particular, InceptionRAG shows superior evasion capabilities, effectively bypassing established defenses that mitigate traditional single-document injections. Our findings expose a concerning paradox: the stronger reasoning capabilities of LLMs increase their vulnerability to reasoning-based poisoning attacks. To mitigate potential misuse, we propose a document isolation-based defense, HODOR, which decouples adversarial logical dependencies."
+    }
+  ]
+}

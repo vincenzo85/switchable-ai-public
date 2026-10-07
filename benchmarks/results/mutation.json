@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "benchmark": "mutation",
+    "measured_at": "2026-10-04T00:37:13+02:00",
+    "git_commit": "2e2472d",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "total": 15,
+  "killed": 15,
+  "survived": [],
+  "mutations": [
+    {
+      "file": "core/domain/policy.py",
+      "what": "nulla è mai complesso: il reasoning non va più al cloud"
+    },
+    {
+      "file": "core/domain/policy.py",
+      "what": "la rotta cloud sparisce"
+    },
+    {
+      "file": "core/domain/policy.py",
+      "what": "il cloud perde il fallback locale (lock-in)"
+    },
+    {
+      "file": "core/domain/policy.py",
+      "what": "data residency spenta: il dato sensibile va in cloud"
+    },
+    {
+      "file": "core/domain/policy.py",
+      "what": "budget guard spento"
+    },
+    {
+      "file": "core/domain/pricing.py",
+      "what": "conteggio token rotto"
+    },
+    {
+      "file": "core/domain/pricing.py",
+      "what": "tutto costa zero: il TCO è una favola"
+    },
+    {
+      "file": "core/use_cases/execute_request.py",
+      "what": "il fallback non viene mai eseguito"
+    },
+    {
+      "file": "core/use_cases/execute_request.py",
+      "what": "RAG: il contesto non arriva al modello (bug del legacy)"
+    },
+    {
+      "file": "core/use_cases/execute_request.py",
+      "what": "escalation spenta"
+    },
+    {
+      "file": "core/use_cases/report.py",
+      "what": "il contatore di violazioni residency è cieco"
+    },
+    {
+      "file": "core/use_cases/advisor.py",
+      "what": "l'advisor può proporre il cloud anche per dati sensibili"
+    },
+    {
+      "file": "core/domain/policy.py",
+      "what": "l'intento torna a leggersi dal corpo del documento"
+    },
+    {
+      "file": "core/use_cases/advisor.py",
+      "what": "la modalità fallback chiama il modello anche quando la regola è sicura"
+    },
+    {
+      "file": "core/domain/text.py",
+      "what": "il flywheel esporta dati personali in chiaro"
+    }
+  ]
+}

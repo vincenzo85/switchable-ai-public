@@ -1,0 +1,138 @@
+# Architettura self-hosted del talk: AI Gateway + osservabilità + workflow.
+#
+#   ./run.sh up                 → profili core + obs + n8n
+#   ./run.sh up core            → solo il gateway LiteLLM
+#
+# Porte (scelte per non collidere con i servizi già attivi sulla macchina):
+#   LiteLLM :4000 · Langfuse :3011 · Grafana :3012 · Prometheus :9091 · n8n :5678
+#
+# Ollama e l'API switchable_ai girano sull'HOST (GPU e modelli già presenti).
+# Il firewall di questa macchina scarta il traffico rete-Docker → host, quindi i
+# servizi che devono CHIAMARE l'host (gateway, Prometheus, Grafana, n8n) usano
+# network_mode: host e ascoltano SOLO su 127.0.0.1. Langfuse resta in bridge:
+# è l'host a chiamare lui.
+# Le credenziali qui sotto (Langfuse, Grafana, LiteLLM, Postgres) sono SOLO DEMO e
+# valgono perché tutto ascolta su 127.0.0.1: se esponi lo stack in rete, cambiale.
+# vLLM non è nel compose: Docker qui non ha il runtime NVIDIA → gira sull'host
+# da .venv-vllm sulla porta 8010 (vedi benchmarks/run_vllm.py).
+
+name: switchable-ai
+
+x-host: &host
+  network_mode: host
+
+services:
+  litellm:
+    profiles: ["core"]
+    image: ghcr.io/berriai/litellm:main-stable
+    <<: *host
+    volumes:
+      - ./litellm.yaml:/app/config.yaml:ro
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - LITELLM_MASTER_KEY=${SAI_GATEWAY_KEY:-sk-switchable-demo}
+    command: ["--config", "/app/config.yaml", "--host", "127.0.0.1", "--port", "4000"]
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c \"import urllib.request;urllib.request.urlopen('http://localhost:4000/health/liveliness')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  langfuse-db:
+    profiles: ["obs"]
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=langfuse
+      - POSTGRES_PASSWORD=langfuse
+      - POSTGRES_DB=langfuse
+    volumes: [langfuse_pg:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U langfuse"]
+      interval: 5s
+      retries: 20
+
+  langfuse:
+    profiles: ["obs"]
+    image: langfuse/langfuse:2
+    depends_on:
+      langfuse-db: {condition: service_healthy}
+    ports: ["127.0.0.1:3011:3000"]
+    environment:
+      - DATABASE_URL=postgresql://langfuse:langfuse@langfuse-db:5432/langfuse
+      - NEXTAUTH_URL=http://localhost:3011
+      - NEXTAUTH_SECRET=switchable-demo-nextauth
+      - SALT=switchable-demo-salt
+      - TELEMETRY_ENABLED=false
+      - HOSTNAME=0.0.0.0
+      # inizializzazione headless: progetto e chiavi demo pronti al primo avvio
+      - LANGFUSE_INIT_ORG_ID=switchable
+      - LANGFUSE_INIT_ORG_NAME=Switchable AI
+      - LANGFUSE_INIT_PROJECT_ID=switchable-ai
+      - LANGFUSE_INIT_PROJECT_NAME=switchable-ai
+      - LANGFUSE_INIT_PROJECT_PUBLIC_KEY=pk-lf-switchable-demo
+      - LANGFUSE_INIT_PROJECT_SECRET_KEY=sk-lf-switchable-demo
+      - LANGFUSE_INIT_USER_EMAIL=demo@switchable.local
+      - LANGFUSE_INIT_USER_NAME=demo
+      - LANGFUSE_INIT_USER_PASSWORD=switchable-demo
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/public/health || exit 1"]
+      interval: 10s
+      retries: 20
+
+  prometheus:
+    profiles: ["obs"]
+    image: prom/prometheus:v3.2.1
+    <<: *host
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--web.listen-address=127.0.0.1:9091"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:9091/-/ready || exit 1"]
+      interval: 10s
+      retries: 10
+
+  grafana:
+    profiles: ["obs"]
+    image: grafana/grafana:11.5.1
+    <<: *host
+    depends_on: [prometheus]
+    environment:
+      - GF_SERVER_HTTP_ADDR=127.0.0.1
+      - GF_SERVER_HTTP_PORT=3012
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=switchable-demo
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/cockpit.json
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3012/api/health || exit 1"]
+      interval: 10s
+      retries: 10
+
+  n8n:
+    profiles: ["n8n"]
+    image: n8nio/n8n:latest
+    <<: *host
+    environment:
+      - N8N_LISTEN_ADDRESS=127.0.0.1
+      - N8N_PORT=5678
+      - N8N_SECURE_COOKIE=false
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+      - GENERIC_TIMEZONE=Europe/Rome
+      - SAI_API=http://127.0.0.1:8088
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n/workflows:/workflows:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5678/healthz || exit 1"]
+      interval: 10s
+      retries: 12
+
+volumes:
+  langfuse_pg:
+  n8n_data:

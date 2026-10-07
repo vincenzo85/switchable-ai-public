@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "benchmark": "router_tuning",
+    "measured_at": "2026-10-04T00:31:08+02:00",
+    "git_commit": "2e2472d",
+    "machine": {
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB",
+      "cpu": "13th Gen Intel(R) Core(TM) i9-13900HX",
+      "ram_gb": 63
+    }
+  },
+  "dev_size": 42,
+  "test_size": 32,
+  "grid_engine": "rizzo",
+  "grid": {
+    "active|1ordine|desc_base": {
+      "accuracy": 0.5952380952380952,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.2,
+          "chosen": {
+            "cloud": 2,
+            "local": 6,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.2,
+          "chosen": {
+            "local": 8,
+            "local_rag": 2
+          }
+        }
+      },
+      "advisor_calls": 42,
+      "requests": 42,
+      "latency_mean_ms": 72.23809523809524,
+      "latency_p50_when_called_ms": 73.0,
+      "cloud_when_not_gold": 0
+    },
+    "active|1ordine|desc_v2": {
+      "accuracy": 0.8571428571428571,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.7,
+          "chosen": {
+            "cloud": 7,
+            "local_rag": 2,
+            "local": 1
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.8,
+          "chosen": {
+            "local_rag": 8,
+            "local": 2
+          }
+        }
+      },
+      "advisor_calls": 42,
+      "requests": 42,
+      "latency_mean_ms": 87.11904761904762,
+      "latency_p50_when_called_ms": 89.0,
+      "cloud_when_not_gold": 0
+    },
+    "active|2ordini|desc_base": {
+      "accuracy": 0.5,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 9,
+            "local_rag": 1
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 10
+          }
+        }
+      },
+      "advisor_calls": 42,
+      "requests": 42,
+      "latency_mean_ms": 146.07142857142858,
+      "latency_p50_when_called_ms": 148.0,
+      "cloud_when_not_gold": 0
+    },
+    "active|2ordini|desc_v2": {
+      "accuracy": 0.8571428571428571,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.7,
+          "chosen": {
+            "cloud": 7,
+            "local_rag": 2,
+            "local": 1
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.8,
+          "chosen": {
+            "local_rag": 8,
+            "local": 2
+          }
+        }
+      },
+      "advisor_calls": 42,
+      "requests": 42,
+      "latency_mean_ms": 177.4047619047619,
+      "latency_p50_when_called_ms": 181.0,
+      "cloud_when_not_gold": 0
+    },
+    "fallback|1ordine|desc_base": {
+      "accuracy": 0.5952380952380952,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.2,
+          "chosen": {
+            "cloud": 2,
+            "local": 6,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.2,
+          "chosen": {
+            "local": 8,
+            "local_rag": 2
+          }
+        }
+      },
+      "advisor_calls": 36,
+      "requests": 42,
+      "latency_mean_ms": 62.73809523809524,
+      "latency_p50_when_called_ms": 74.0,
+      "cloud_when_not_gold": 0
+    },
+    "fallback|1ordine|desc_v2": {
+      "accuracy": 0.8333333333333334,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.6,
+          "chosen": {
+            "cloud": 6,
+            "local": 2,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.8,
+          "chosen": {
+            "local_rag": 8,
+            "local": 2
+          }
+        }
+      },
+      "advisor_calls": 36,
+      "requests": 42,
+      "latency_mean_ms": 76.04761904761905,
+      "latency_p50_when_called_ms": 90.5,
+      "cloud_when_not_gold": 0
+    },
+    "fallback|2ordini|desc_base": {
+      "accuracy": 0.5,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 8,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 10
+          }
+        }
+      },
+      "advisor_calls": 36,
+      "requests": 42,
+      "latency_mean_ms": 126.9047619047619,
+      "latency_p50_when_called_ms": 150.0,
+      "cloud_when_not_gold": 0
+    },
+    "fallback|2ordini|desc_v2": {
+      "accuracy": 0.8333333333333334,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.6,
+          "chosen": {
+            "cloud": 6,
+            "local": 2,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.8,
+          "chosen": {
+            "local_rag": 8,
+            "local": 2
+          }
+        }
+      },
+      "advisor_calls": 36,
+      "requests": 42,
+      "latency_mean_ms": 154.4047619047619,
+      "latency_p50_when_called_ms": 183.5,
+      "cloud_when_not_gold": 0
+    }
+  },
+  "chosen": {
+    "mode": "active",
+    "both_orders": false,
+    "descriptions": "v2",
+    "label": "active|1ordine|desc_v2"
+  },
+  "descriptions_v2": {
+    "local": "small local model: short, repetitive or mechanical tasks — classify, label, translate, extract fields, reformat, check a value, summarize a short text. Fast and almost free.",
+    "cloud": "large cloud model: open-ended reasoning — compare options, design, plan, diagnose, assess risks, write a strategy or a proof. Use it whenever the answer needs real thinking, even if the question is short.",
+    "local_rag": "local search over OUR internal documentation: architecture, runbook, ADRs, configuration, ports and procedures of this project. Use it when the question asks how WE do things or about our own system."
+  },
+  "rules": {
+    "dev": {
+      "accuracy": 0.5,
+      "per_family": {
+        "local": {
+          "n": 22,
+          "accuracy": 0.9545454545454546,
+          "chosen": {
+            "local": 21,
+            "local_rag": 1
+          }
+        },
+        "cloud": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 8,
+            "local_rag": 2
+          }
+        },
+        "local_rag": {
+          "n": 10,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 10
+          }
+        }
+      },
+      "advisor_calls": 0,
+      "requests": 42,
+      "latency_mean_ms": 0.0,
+      "latency_p50_when_called_ms": 0,
+      "cloud_when_not_gold": 0
+    },
+    "test": {
+      "accuracy": 0.53125,
+      "per_family": {
+        "local": {
+          "n": 16,
+          "accuracy": 1.0,
+          "chosen": {
+            "local": 16
+          }
+        },
+        "cloud": {
+          "n": 8,
+          "accuracy": 0.0,
+          "chosen": {
+            "local": 7,
+            "local_rag": 1
+          }
+        },
+        "local_rag": {
+          "n": 8,
+          "accuracy": 0.125,
+          "chosen": {
+            "local": 7,
+            "local_rag": 1
+          }
+        }
+      },
+      "advisor_calls": 0,
+      "requests": 32,
+      "latency_mean_ms": 0.0,
+      "latency_p50_when_called_ms": 0,
+      "cloud_when_not_gold": 0
+    }
+  },
+  "final": {
+    "rizzo": {
+      "dev": {
+        "accuracy": 0.8571428571428571,
+        "per_family": {
+          "local": {
+            "n": 22,
+            "accuracy": 0.9545454545454546,
+            "chosen": {
+              "local": 21,
+              "local_rag": 1
+            }
+          },
+          "cloud": {
+            "n": 10,
+            "accuracy": 0.7,
+            "chosen": {
+              "cloud": 7,
+              "local_rag": 2,
+              "local": 1
+            }
+          },
+          "local_rag": {
+            "n": 10,
+            "accuracy": 0.8,
+            "chosen": {
+              "local_rag": 8,
+              "local": 2
+            }
+          }
+        },
+        "advisor_calls": 42,
+        "requests": 42,
+        "latency_mean_ms": 89.07142857142857,
+        "latency_p50_when_called_ms": 91.0,
+        "cloud_when_not_gold": 0
+      },
+      "test": {
+        "accuracy": 0.78125,
+        "per_family": {
+          "local": {
+            "n": 16,
+            "accuracy": 0.9375,
+            "chosen": {
+              "local": 15,
+              "local_rag": 1
+            }
+          },
+          "cloud": {
+            "n": 8,
+            "accuracy": 0.625,
+            "chosen": {
+              "cloud": 5,
+              "local_rag": 2,
+              "local": 1
+            }
+          },
+          "local_rag": {
+            "n": 8,
+            "accuracy": 0.625,
+            "chosen": {
+              "cloud": 1,
+              "local_rag": 5,
+              "local": 2
+            }
+          }
+        },
+        "advisor_calls": 32,
+        "requests": 32,
+        "latency_mean_ms": 89.90625,
+        "latency_p50_when_called_ms": 92.0,
+        "cloud_when_not_gold": 1
+      }
+    },
+    "openjev": {
+      "dev": {
+        "accuracy": 0.47619047619047616,
+        "per_family": {
+          "local": {
+            "n": 22,
+            "accuracy": 0.4090909090909091,
+            "chosen": {
+              "local": 9,
+              "local_rag": 9,
+              "cloud": 4
+            }
+          },
+          "cloud": {
+            "n": 10,
+            "accuracy": 0.4,
+            "chosen": {
+              "cloud": 4,
+              "local_rag": 5,
+              "local": 1
+            }
+          },
+          "local_rag": {
+            "n": 10,
+            "accuracy": 0.7,
+            "chosen": {
+              "local_rag": 7,
+              "local": 2,
+              "cloud": 1
+            }
+          }
+        },
+        "advisor_calls": 42,
+        "requests": 42,
+        "latency_mean_ms": 174.4047619047619,
+        "latency_p50_when_called_ms": 184.0,
+        "cloud_when_not_gold": 5
+      },
+      "test": {
+        "accuracy": 0.5625,
+        "per_family": {
+          "local": {
+            "n": 16,
+            "accuracy": 0.4375,
+            "chosen": {
+              "local_rag": 4,
+              "cloud": 5,
+              "local": 7
+            }
+          },
+          "cloud": {
+            "n": 8,
+            "accuracy": 0.625,
+            "chosen": {
+              "cloud": 5,
+              "local_rag": 3
+            }
+          },
+          "local_rag": {
+            "n": 8,
+            "accuracy": 0.75,
+            "chosen": {
+              "cloud": 1,
+              "local_rag": 6,
+              "local": 1
+            }
+          }
+        },
+        "advisor_calls": 32,
+        "requests": 32,
+        "latency_mean_ms": 179.25,
+        "latency_p50_when_called_ms": 191.5,
+        "cloud_when_not_gold": 6
+      }
+    }
+  },
+  "protocol": "configurazione scelta solo sul dev; test valutato una volta, a configurazione fissata"
+}

@@ -1,0 +1,70 @@
+[
+ {
+  "title": "Task A — classificazione semplice",
+  "prompt": "Classifica questo ticket in [accesso, fatturazione, bug, altro] e rispondi SOLO con la categoria: 'Non riesco a fare login da stamattina.'",
+  "prompt_full": "Classifica questo ticket in [accesso, fatturazione, bug, altro] e rispondi SOLO con la categoria: 'Non riesco a fare login da stamattina.'",
+  "route": "local",
+  "model": "ollama/qwen2.5:7b",
+  "fallback": false,
+  "fallback_reason": "",
+  "tokens_in": 69,
+  "tokens_out": 3,
+  "latency_ms": 131,
+  "cost_eur": 1.44e-05,
+  "cost_if_cloud_eur": 0.0003312,
+  "sources": [],
+  "measured_at": "2026-10-03T21:48:42+02:00"
+ },
+ {
+  "title": "Task B — reasoning complesso",
+  "prompt": "Analizza i trade-off tra monolite modulare e microservizi per una piattaforma con vincoli di data residency, proponi una migrazione in 3 fasi con rischi e mitig…",
+  "prompt_full": "Analizza i trade-off tra monolite modulare e microservizi per una piattaforma con vincoli di data residency, proponi una migrazione in 3 fasi con rischi e mitigazioni. Analizza i trade-off tra monolite modulare e microservizi per una piattaforma con vincoli di data residency, proponi una migrazione in 3 fasi con rischi e mitigazioni. Analizza i trade-off tra monolite modulare e microservizi per una piattaforma con vincoli di data residency, proponi una migrazione in 3 fasi con rischi e mitigazioni. Analizza i trade-off tra monolite modulare e microservizi per una piattaforma con vincoli di data residency, proponi una migrazione in 3 fasi con rischi e mitigazioni. ",
+  "route": "cloud",
+  "model": "ollama/qwen2.5:7b",
+  "fallback": true,
+  "fallback_reason": "cloud/gpt-4o: nessuna chiave cloud (OPENAI_API_KEY vuota)",
+  "tokens_in": 214,
+  "tokens_out": 300,
+  "latency_ms": 5857,
+  "cost_eur": 0.0001028,
+  "cost_if_cloud_eur": 0.0023644,
+  "sources": [],
+  "measured_at": "2026-10-03T21:48:42+02:00"
+ },
+ {
+  "title": "Task C — domanda sulla knowledge base",
+  "prompt": "Nella documentazione del repository, come funziona il fallback del gateway quando il cloud non risponde?",
+  "prompt_full": "Nella documentazione del repository, come funziona il fallback del gateway quando il cloud non risponde?",
+  "route": "local_rag",
+  "model": "ollama/qwen2.5:7b",
+  "fallback": false,
+  "fallback_reason": "",
+  "tokens_in": 579,
+  "tokens_out": 300,
+  "latency_ms": 6203,
+  "cost_eur": 0.00017580000000000002,
+  "cost_if_cloud_eur": 0.0040434,
+  "sources": [
+   "docs/RUNBOOK.md",
+   "docs/adr/ADR-002-local-first-con-fallback.md",
+   "data/kb/adr-007-gateway.md"
+  ],
+  "measured_at": "2026-10-03T21:48:42+02:00"
+ },
+ {
+  "title": "Task D — dato sensibile",
+  "prompt": "Documento riservato: analizza i rischi del piano di riorganizzazione del team vendite e proponi le azioni per i prossimi 3 mesi. Documento riservato: analizza i…",
+  "prompt_full": "Documento riservato: analizza i rischi del piano di riorganizzazione del team vendite e proponi le azioni per i prossimi 3 mesi. Documento riservato: analizza i rischi del piano di riorganizzazione del team vendite e proponi le azioni per i prossimi 3 mesi. Documento riservato: analizza i rischi del piano di riorganizzazione del team vendite e proponi le azioni per i prossimi 3 mesi. ",
+  "route": "local",
+  "model": "ollama/qwen2.5:7b",
+  "fallback": false,
+  "fallback_reason": "",
+  "tokens_in": 143,
+  "tokens_out": 300,
+  "latency_ms": 6075,
+  "cost_eur": 8.86e-05,
+  "cost_if_cloud_eur": 0.0020378,
+  "sources": [],
+  "measured_at": "2026-10-03T21:48:42+02:00"
+ }
+]

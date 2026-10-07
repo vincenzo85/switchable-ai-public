@@ -1,0 +1,18 @@
+__pycache__/
+.pytest_cache/
+dist/
+*.tar.gz
+*.egg-info/
+.env
+client_secret_*.json
+token_*.json
+.venv/
+.venv-vllm/
+data/
+talk/screens/
+*.pyc
+talk/deck/dist/
+talk/deck/dist-redteam/
+talk/screens-redteam/
+# log dei server avviati dai benchmark (contengono percorsi della macchina locale)
+benchmarks/results/*.log
